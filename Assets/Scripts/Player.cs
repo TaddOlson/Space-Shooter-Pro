@@ -22,8 +22,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _thruster;
 
+    private bool _hasBeenHit = false;
+
     private bool _isTripleShotActive = false;
-    private bool _isSpeedBoostActive = false;
     private bool _isShieldsActive = false;
 
     [SerializeField]
@@ -81,6 +82,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _hasBeenHit = false;
+
         CalculateMovement();
 
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
@@ -133,7 +136,13 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
-       
+        if (_hasBeenHit == true)
+        {
+            return;
+        }
+
+        _hasBeenHit = true;
+
         if (_isShieldsActive == true)
         {
             _isShieldsActive = false;
@@ -161,7 +170,6 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        
     }
 
     public void TripleShotActive()
@@ -178,7 +186,6 @@ public class Player : MonoBehaviour
 
     public void SpeedBoostActive()
     {
-        _isSpeedBoostActive = true;
         _speed *= _speedMultiplier;
         _thruster.gameObject.SetActive(false);
         _speedBoostVisualizer.gameObject.SetActive(true);
@@ -188,7 +195,6 @@ public class Player : MonoBehaviour
     IEnumerator SpeedPowerDownRoutine()
     {
         yield return new WaitForSeconds(5.0f);
-        _isSpeedBoostActive = false;
         _speed /= _speedMultiplier;
         _thruster.gameObject.SetActive(true);
         _speedBoostVisualizer.gameObject.SetActive(false);
