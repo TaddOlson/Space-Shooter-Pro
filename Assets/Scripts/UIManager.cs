@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _scoreText;
     [SerializeField]
-    private Image _LivesImg;
+    private Image _livesImg;
     [SerializeField]
     private Sprite[] _livesSprites;
     [SerializeField]
@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateLives(int currentLives)
     {
-        _LivesImg.sprite = _livesSprites[currentLives];
+        _livesImg.sprite = _livesSprites[currentLives];
 
         if (currentLives == 0)
         {

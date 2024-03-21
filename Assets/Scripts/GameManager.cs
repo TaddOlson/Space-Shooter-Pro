@@ -23,11 +23,9 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(0); //Main Menu Scene
         }
 
-        //if the escape is pressed
-        //quit application
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            QuitGame();
+            QuitGame(); //Quitting Application
         }
     }
 

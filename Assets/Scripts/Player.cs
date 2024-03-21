@@ -21,8 +21,11 @@ public class Player : MonoBehaviour
     private GameObject _explosionPrefab;
     [SerializeField]
     private GameObject _thruster;
+    
 
     private bool _hasBeenHit = false;
+    private float _damageDelay = 1.0f;
+    private float _damageCooldown = 0f;
 
     private bool _isTripleShotActive = false;
     private bool _isShieldsActive = false;
@@ -31,6 +34,8 @@ public class Player : MonoBehaviour
     private GameObject _shieldVisualizer;
     [SerializeField]
     private GameObject _speedBoostVisualizer;
+    [SerializeField]
+    private GameObject _thrusterBoostVisualizer;
 
     [SerializeField]
     private GameObject _rightEngine, _leftEngine;
@@ -72,9 +77,10 @@ public class Player : MonoBehaviour
             _audioSource.clip = _laserSoundClip;
         }
 
-
         _rightEngine.gameObject.SetActive(false);
         _leftEngine.gameObject.SetActive(false);
+        _thrusterBoostVisualizer.gameObject.SetActive(false);
+        _thruster.gameObject.SetActive(true);
 
     }
 
@@ -83,6 +89,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         _hasBeenHit = false;
+
+        if(_damageCooldown > 0)
+        {
+            _damageCooldown -= Time.deltaTime;
+        }
 
         CalculateMovement();
 
@@ -113,7 +124,22 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(11.3f, transform.position.y, 0);
         }
 
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            _speed += 5f;
+            _thruster.gameObject.SetActive(false);
+            _thrusterBoostVisualizer.gameObject.SetActive(true);
+        }
+        else if(Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            _speed -= 5f;
+            _thrusterBoostVisualizer.gameObject.SetActive(false);
+            _thruster.gameObject.SetActive(true);
+        }
+
     }
+
+ 
 
     void FireLaser()
     {
@@ -127,19 +153,23 @@ public class Player : MonoBehaviour
 
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
         }
-
         
         _audioSource.Play();
-
     }
     
-
     public void Damage()
     {
         if (_hasBeenHit == true)
         {
             return;
         }
+
+        if(_damageCooldown > 0)
+        {
+            return;
+        }
+
+        _damageCooldown = _damageDelay;
 
         _hasBeenHit = true;
 
@@ -211,6 +241,8 @@ public class Player : MonoBehaviour
         _score += points;
         _uiManager.UpdateScore(_score);
     }
+
+    
 
   
 }  

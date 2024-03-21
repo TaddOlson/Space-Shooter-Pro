@@ -3,7 +3,16 @@ guid: a4da666d269c91d47a28e05ff5e84a3e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _laserPrefab: {instanceID: 0}
+  - _tripleShotPrefab: {instanceID: 0}
+  - _explosionPrefab: {instanceID: 0}
+  - _thruster: {instanceID: 0}
+  - _shieldVisualizer: {instanceID: 0}
+  - _speedBoostVisualizer: {instanceID: 0}
+  - _rightEngine: {instanceID: 0}
+  - _leftEngine: {instanceID: 0}
+  - _laserSoundClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -134,7 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotateSpeed: 19.13
-  _asteroid: {fileID: 946137350916691193}
   _explosionPrefab: {fileID: 7108122043180429524, guid: edea8c3ee8e54f947bc6ac3a67a9f35b,
     type: 3}
-  _anim: {fileID: 7445562957341306883, guid: edea8c3ee8e54f947bc6ac3a67a9f35b, type: 3}
