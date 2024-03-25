@@ -14,8 +14,9 @@ public class Player : MonoBehaviour
     private float _canFire = -1f;
     [SerializeField]
     private int _lives = 3;
-    [SerializeField]
-    private float _shieldDurability = 3f;
+   
+
+    
    
 
     private SpawnManager _spawnManager;
@@ -34,6 +35,9 @@ public class Player : MonoBehaviour
 
     private bool _isTripleShotActive = false;
     private bool _isShieldsActive = false;
+    [SerializeField]
+    private int _shieldDurability = 3;
+    private SpriteRenderer _shieldColor;
 
     [SerializeField]
     private GameObject _shieldVisualizer, _speedBoostVisualizer, _thrusterBoostVisualizer;
@@ -59,7 +63,8 @@ public class Player : MonoBehaviour
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
-
+        _shieldColor = _shieldVisualizer.GetComponent<SpriteRenderer>();
+        
         if (_spawnManager == null)
         {
             Debug.LogError("The Spawn Manager is NULL.");
@@ -83,7 +88,6 @@ public class Player : MonoBehaviour
         _leftEngine.gameObject.SetActive(false);
         _thrusterBoostVisualizer.gameObject.SetActive(false);
         _thruster.gameObject.SetActive(true);
-
     }
 
 
@@ -173,20 +177,30 @@ public class Player : MonoBehaviour
 
         _hasBeenHit = true;
 
-        if (_isShieldsActive == true)
+        if(_isShieldsActive == true)
         {
             _shieldDurability--;
-           
 
-            if(_shieldDurability <=0)
+            switch (_shieldDurability)
             {
-                _isShieldsActive = false;
-                _shieldVisualizer.SetActive(false);
-                return;
+                case 3:
+                    _shieldColor.color = Color.green;
+                    break;
+                case 2:
+                    _shieldColor.color = Color.blue;
+                    break;
+                case 1:
+                    _shieldColor.color = Color.red;
+                    break;
+                case 0:
+                    _shieldVisualizer.gameObject.SetActive(false);
+                    _isShieldsActive = false;
+                    break;
             }
-                
+            
+            return;
         }
- 
+      
 
         _lives--;
 
@@ -242,6 +256,8 @@ public class Player : MonoBehaviour
     {  
         _isShieldsActive = true;
         _shieldVisualizer.SetActive(true);
+        _shieldColor.color = Color.green;
+        _shieldDurability = 3;
     }
 
     public void AddScore(int points)

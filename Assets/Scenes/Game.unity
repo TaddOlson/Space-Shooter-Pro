@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 152517410}
-  _livesImg: {fileID: 0}
+  _livesImg: {fileID: 2143168500}
   _livesSprites:
   - {fileID: 21300000, guid: ba53e111f0125654cabfd4eefaf3a657, type: 3}
   - {fileID: 21300000, guid: 80fba5ece7697c44eacc036539c1b552, type: 3}
@@ -689,7 +689,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 333b0196b7a764df5a7768ead9b69dbc, type: 3}
-  m_Color: {r: 0.3801911, g: 0.9811321, b: 0.032395888, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1032,12 +1032,12 @@ MonoBehaviour:
     type: 3}
   _fireRate: 0.15
   _lives: 3
-  _shieldDurability: 3
   _tripleShotPrefab: {fileID: 8552063044126188814, guid: 9a9aa4da8f8d8794c9f2ae659e56ca46,
     type: 3}
   _explosionPrefab: {fileID: 7108122043180429524, guid: edea8c3ee8e54f947bc6ac3a67a9f35b,
     type: 3}
   _thruster: {fileID: 643201893}
+  _shieldDurability: 3
   _shieldVisualizer: {fileID: 590692838}
   _speedBoostVisualizer: {fileID: 757415944}
   _thrusterBoostVisualizer: {fileID: 1292130124}
@@ -2158,10 +2158,10 @@ RectTransform:
   m_Father: {fileID: 217127815}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -75}
-  m_SizeDelta: {x: 100, y: 75}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 76.3, y: 41.894}
+  m_SizeDelta: {x: 77.768875, y: 62.500412}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2143168500
 MonoBehaviour:
