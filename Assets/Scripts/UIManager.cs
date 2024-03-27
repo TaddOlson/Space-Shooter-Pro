@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
             Debug.LogError("GameManager is NULL.");
         }
 
-        _ammoCountText.text = "Ammo Count: " + 15;
+        _ammoCountText.text = "Ammo Count: " + 30;
     }
 
     public void UpdateScore(int playerScore)

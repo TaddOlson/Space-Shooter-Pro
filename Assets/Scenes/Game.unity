@@ -1034,7 +1034,7 @@ MonoBehaviour:
     type: 3}
   _fireRate: 0.15
   _lives: 3
-  _ammoCount: 15
+  _ammoCount: 30
   _tripleShotPrefab: {fileID: 8552063044126188814, guid: 9a9aa4da8f8d8794c9f2ae659e56ca46,
     type: 3}
   _explosionPrefab: {fileID: 7108122043180429524, guid: edea8c3ee8e54f947bc6ac3a67a9f35b,
@@ -1600,8 +1600,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 169, y: -21}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 192.92, y: -12.81}
+  m_SizeDelta: {x: 202.08054, y: 25.624}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1501071987
 MonoBehaviour:
@@ -1632,10 +1632,10 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 0
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Ammo Count:'
+  m_Text: 'Ammo Count: 30'
 --- !u!222 &1501071988
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2009,6 +2009,7 @@ MonoBehaviour:
   - {fileID: 61230701469436698, guid: 43e441abd6bd4304ab7b34e8712a7c42, type: 3}
   - {fileID: 8077432375351336126, guid: ca83bb6aba242d84e927d73b4d7a3ea6, type: 3}
   - {fileID: 743761318382681063, guid: 6b97ee28b6e9d0f4ca4f163802be4a84, type: 3}
+  - {fileID: 925026708547977014, guid: 9f323b08483912d4f99b62dda92f89d0, type: 3}
 --- !u!4 &1877394603
 Transform:
   m_ObjectHideFlags: 0
