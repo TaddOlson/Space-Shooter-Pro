@@ -20,9 +20,12 @@ public class UIManager : MonoBehaviour
     private Text _mainMenuText;
     [SerializeField]
     private Text _ammoCountText;
+    [SerializeField]
+    private Text _ammoDepletionText;
 
 
     private GameManager _gameManager;
+    private Player _player;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,12 @@ public class UIManager : MonoBehaviour
         _restartText.gameObject.SetActive(false);
         _mainMenuText.gameObject.SetActive(false);
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
+        _player = GameObject.Find("Player").GetComponent<Player>();
+
+        if (_player == null)
+        {
+            Debug.LogError("Player is NULL.");
+        }
 
         if (_gameManager == null)
         {
@@ -39,6 +48,7 @@ public class UIManager : MonoBehaviour
         }
 
         _ammoCountText.text = "Ammo Count: " + 30;
+        _ammoDepletionText.gameObject.SetActive(false);
     }
 
     public void UpdateScore(int playerScore)
@@ -54,7 +64,6 @@ public class UIManager : MonoBehaviour
         {
             GameOverSequence();
         }
-
     }
 
     void GameOverSequence()
@@ -86,6 +95,22 @@ public class UIManager : MonoBehaviour
 
     public void UpdateAmmo(int playerAmmo)
     {
-        _ammoCountText.text = "Ammo Count: " + playerAmmo.ToString(); 
+        _ammoCountText.text = "Ammo Count: " + playerAmmo.ToString();
+    }
+
+    public void OutofAmmoFlickerRoutine()
+    {
+        StartCoroutine(OutOfAmmoFlickerRoutine());
+    }
+
+    IEnumerator OutOfAmmoFlickerRoutine()
+    {
+        while(true)
+        {
+            _ammoDepletionText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _ammoDepletionText.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 }

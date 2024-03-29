@@ -165,6 +165,17 @@ public class Player : MonoBehaviour
 
         _audioSource.Play();
 
+        //secondary fire powerup options:
+        //wide shot. 5 lasers instead of 3.
+        //bomb
+        //rocket non-heat seeking like a bomb
+        //spinning around the ship laser that fires everywhere
+        //side shot 6 lasers
+        //rapidfire lasers
+        //shot then cross explosion
+        //mine placement
+
+
     }
 
     public void Damage()
@@ -206,7 +217,6 @@ public class Player : MonoBehaviour
 
             return;
         }
-
 
         _lives--;
 
@@ -283,11 +293,14 @@ public class Player : MonoBehaviour
         if (_ammoCount <= 0)
         {
             _ammoCount = 0;
+            _uiManager.OutofAmmoFlickerRoutine();
         }
         else if (_ammoCount > 30)
         {
             _ammoCount = 30;
         }
+
+        _uiManager.UpdateAmmo(_ammoCount);
     }
 
     public void ReloadAmmo()
@@ -297,6 +310,17 @@ public class Player : MonoBehaviour
         _uiManager.UpdateAmmo(_ammoCount);
     }
 
+    public void HealthGain()
+    {
+        if (_lives == 3)
+        {
+            Debug.LogError("Lives full");
+            return;
+        }
+
+        _lives++;
+        _uiManager.UpdateLives(_lives);
+    }
 }  
 
     
