@@ -165,6 +165,11 @@ public class Player : MonoBehaviour
 
         _audioSource.Play();
 
+        if(_ammoCount == 0)
+        {
+            _uiManager.OutofAmmoFlickerRoutine();
+        }
+        
         //secondary fire powerup options:
         //wide shot. 5 lasers instead of 3.
         //bomb
@@ -174,8 +179,6 @@ public class Player : MonoBehaviour
         //rapidfire lasers
         //shot then cross explosion
         //mine placement
-
-
     }
 
     public void Damage()
@@ -293,11 +296,10 @@ public class Player : MonoBehaviour
         if (_ammoCount <= 0)
         {
             _ammoCount = 0;
-            _uiManager.OutofAmmoFlickerRoutine();
         }
-        else if (_ammoCount > 30)
+        else if (_ammoCount > 15)
         {
-            _ammoCount = 30;
+            _ammoCount = 15;
         }
 
         _uiManager.UpdateAmmo(_ammoCount);
@@ -305,7 +307,7 @@ public class Player : MonoBehaviour
 
     public void ReloadAmmo()
     {
-        _ammoCount = _ammoCount + 10;
+        _ammoCount = _ammoCount + 15;
         AmmoCap();
         _uiManager.UpdateAmmo(_ammoCount);
     }

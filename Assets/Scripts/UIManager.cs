@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
             Debug.LogError("GameManager is NULL.");
         }
 
-        _ammoCountText.text = "Ammo Count: " + 30;
+        _ammoCountText.text = "Ammo Count: " + 15;
         _ammoDepletionText.gameObject.SetActive(false);
     }
 
@@ -88,7 +88,7 @@ public class UIManager : MonoBehaviour
         
     }
 
-    public void UpdateShields()
+    public void UpdateShields(int currentShields)
     {
 
     }
