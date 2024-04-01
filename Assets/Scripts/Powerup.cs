@@ -14,7 +14,6 @@ public class Powerup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
     
         if (transform.position.y < -6.0f)
@@ -49,6 +48,9 @@ public class Powerup : MonoBehaviour
                         break;
                     case 4:
                         player.HealthGain();
+                        break;
+                    case 5:
+                        player.LunarShotActive();
                         break;
                     default:
                         Debug.Log("Default Value");

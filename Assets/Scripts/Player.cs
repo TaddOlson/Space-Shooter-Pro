@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     private GameObject _explosionPrefab;
     [SerializeField]
     private GameObject _thruster;
+    [SerializeField]
+    private GameObject _lunarShotPrefab;
 
 
     private bool _hasBeenHit = false;
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
 
     private bool _isTripleShotActive = false;
     private bool _isShieldsActive = false;
+    private bool _isLunarShotActive = false;
     [SerializeField]
     private int _shieldDurability = 3;
     private SpriteRenderer _shieldColor;
@@ -169,16 +172,15 @@ public class Player : MonoBehaviour
         {
             _uiManager.OutofAmmoFlickerRoutine();
         }
-        
-        //secondary fire powerup options:
-        //wide shot. 5 lasers instead of 3.
-        //bomb
-        //rocket non-heat seeking like a bomb
-        //spinning around the ship laser that fires everywhere
-        //side shot 6 lasers
-        //rapidfire lasers
-        //shot then cross explosion
-        //mine placement
+
+        if (_isLunarShotActive == true)
+        {
+            Instantiate(_lunarShotPrefab, transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.25f, 0), Quaternion.identity);
+        }
     }
 
     public void Damage()
@@ -279,6 +281,18 @@ public class Player : MonoBehaviour
         _shieldDurability = 3;
     }
 
+    public void LunarShotActive()
+    {
+        _isLunarShotActive = true;
+        StartCoroutine(LunarShotPowerDownRoutine());
+    }
+
+    IEnumerator LunarShotPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isLunarShotActive = false;
+    }
+
     public void AddScore(int points)
     {
         _score += points;
@@ -323,6 +337,7 @@ public class Player : MonoBehaviour
         _lives++;
         _uiManager.UpdateLives(_lives);
     }
+
 }  
 
     

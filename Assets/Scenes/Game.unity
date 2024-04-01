@@ -1042,6 +1042,8 @@ MonoBehaviour:
   _explosionPrefab: {fileID: 7108122043180429524, guid: edea8c3ee8e54f947bc6ac3a67a9f35b,
     type: 3}
   _thruster: {fileID: 643201893}
+  _lunarShotPrefab: {fileID: 4452321331632479573, guid: c9fcf016e5abf3a4dbc3eb2911d8e275,
+    type: 3}
   _shieldDurability: 3
   _shieldVisualizer: {fileID: 590692838}
   _speedBoostVisualizer: {fileID: 757415944}
@@ -1637,7 +1639,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Ammo Count: 30'
+  m_Text: 'Ammo Count: 15'
 --- !u!222 &1501071988
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2091,6 +2093,7 @@ MonoBehaviour:
   - {fileID: 743761318382681063, guid: 6b97ee28b6e9d0f4ca4f163802be4a84, type: 3}
   - {fileID: 925026708547977014, guid: 9f323b08483912d4f99b62dda92f89d0, type: 3}
   - {fileID: 6548642997675880468, guid: bc8a5c6950f73404fae53bdc8f76fb12, type: 3}
+  - {fileID: 4452321331632479573, guid: d969f26d238859846b159c5614b91bb5, type: 3}
 --- !u!4 &1877394603
 Transform:
   m_ObjectHideFlags: 0
@@ -2374,6 +2377,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid
+      objectReference: {fileID: 0}
+    - target: {fileID: 946137350916691193, guid: 3361d22d5f6d8b04889c91cc739e4dad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328728830217250717, guid: 3361d22d5f6d8b04889c91cc739e4dad,
         type: 3}
