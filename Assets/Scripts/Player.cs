@@ -54,6 +54,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private AudioClip _laserSoundClip;
+    [SerializeField]
+    private AudioClip _lunarShotClip;
     private AudioSource _audioSource;
 
 
@@ -74,15 +76,6 @@ public class Player : MonoBehaviour
         if (_uiManager == null)
         {
             Debug.LogError("The UI Manager is NULL");
-        }
-
-        if (_audioSource == null)
-        {
-            Debug.LogError("AudioSource on the Player is NULL.");
-        }
-        else
-        {
-            _audioSource.clip = _laserSoundClip;
         }
 
         _rightEngine.gameObject.SetActive(false);

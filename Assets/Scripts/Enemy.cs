@@ -103,6 +103,21 @@ public class Enemy : MonoBehaviour
             
         }
 
+        if (other.tag == "LunarShot")
+        {
+            Destroy(this.gameObject);
+            if (_player != null)
+            {
+                _player.AddScore(20);
+            }
+
+            _anim.SetTrigger("OnEnemyDeath");
+            _speed = 0;
+            _audioSource.Play();
+            Destroy(gameObject.GetComponent<BoxCollider2D>());
+            Destroy(this.gameObject, 2.8f);
+        }
+
     }
 
   

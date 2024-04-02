@@ -14,6 +14,7 @@ TagManager:
   - ScoreText
   - Asteroid
   - EnemyLaser
+  - LunarShot
   layers:
   - Default
   - TransparentFX
