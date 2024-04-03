@@ -22,6 +22,10 @@ public class UIManager : MonoBehaviour
     private Text _ammoCountText;
     [SerializeField]
     private Text _ammoDepletionText;
+    [SerializeField]
+    private Slider _thrusterFuel;
+    [SerializeField]
+    private Sprite[] _fuelSprites;
 
 
     private GameManager _gameManager;
@@ -112,5 +116,10 @@ public class UIManager : MonoBehaviour
             _ammoDepletionText.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    public void UpdateFuel(float currentFuel)
+    {
+
     }
 }

@@ -7,7 +7,7 @@ public class LunarShotRay : MonoBehaviour
     [SerializeField]
     private float _speed = 6.0f;
     private CapsuleCollider2D _collider;
-    private float m_ScaleX, m_ScaleY, m_ScaleZ;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +36,6 @@ public class LunarShotRay : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            Enemy enemy = other.transform.GetComponent<Enemy>();
-
             Destroy(other.gameObject);
         }
     }

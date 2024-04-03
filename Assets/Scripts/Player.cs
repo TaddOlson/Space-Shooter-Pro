@@ -58,6 +58,11 @@ public class Player : MonoBehaviour
     private AudioClip _lunarShotClip;
     private AudioSource _audioSource;
 
+    private float _thrusterLevel;
+    private bool _isThrusterActive = false;
+    [SerializeField]
+    private float _overheated;
+    private bool _isOverheated = false;
 
     // Start is called before the first frame update
     void Start()
@@ -82,8 +87,6 @@ public class Player : MonoBehaviour
         _leftEngine.gameObject.SetActive(false);
         _thrusterBoostVisualizer.gameObject.SetActive(false);
         _thruster.gameObject.SetActive(true);
-
-
     }
 
 
@@ -134,15 +137,18 @@ public class Player : MonoBehaviour
             _speed += 5f;
             _thruster.gameObject.SetActive(false);
             _thrusterBoostVisualizer.gameObject.SetActive(true);
+            
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             _speed -= 5f;
             _thrusterBoostVisualizer.gameObject.SetActive(false);
             _thruster.gameObject.SetActive(true);
+            
         }
 
     }
+
 
     void FireLaser()
     {
