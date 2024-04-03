@@ -165,12 +165,8 @@ public class Player : MonoBehaviour
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
         }
 
-        _audioSource.Play();
 
-        if(_ammoCount == 0)
-        {
-            _uiManager.OutofAmmoFlickerRoutine();
-        }
+        _audioSource.Play();
 
         if (_isLunarShotActive == true)
         {
@@ -179,6 +175,11 @@ public class Player : MonoBehaviour
         else
         {
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.25f, 0), Quaternion.identity);
+        }
+
+        if (_ammoCount == 0)
+        {
+            _uiManager.OutofAmmoFlickerRoutine();
         }
     }
 
