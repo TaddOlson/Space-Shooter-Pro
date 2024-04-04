@@ -100,11 +100,15 @@ public class UIManager : MonoBehaviour
     public void UpdateAmmo(int playerAmmo)
     {
         _ammoCountText.text = "Ammo Count: " + playerAmmo.ToString();
-    }
 
-    public void OutofAmmoFlickerRoutine()
-    {
-        StartCoroutine(OutOfAmmoFlickerRoutine());
+        if(playerAmmo == 0)
+        {
+            StartCoroutine(OutOfAmmoFlickerRoutine());
+        }
+        else
+        {
+            StopCoroutine(OutOfAmmoFlickerRoutine());
+        }
     }
 
     IEnumerator OutOfAmmoFlickerRoutine()

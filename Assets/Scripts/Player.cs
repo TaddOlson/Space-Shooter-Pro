@@ -155,32 +155,26 @@ public class Player : MonoBehaviour
         AmmoCount(-1);
         _canFire = Time.time + _fireRate;
 
-        if (_isTripleShotActive == true)
+        if (_isTripleShotActive == true )
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
+            _audioSource.clip = _laserSoundClip;
+        }
+        else if (_isLunarShotActive == true)
+        {
+            Instantiate(_lunarShotPrefab, transform.position, Quaternion.identity);
+            _audioSource.clip = _lunarShotClip;
         }
         else
         {
 
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
+            _audioSource.clip = _laserSoundClip;
         }
 
 
         _audioSource.Play();
 
-        if (_isLunarShotActive == true)
-        {
-            Instantiate(_lunarShotPrefab, transform.position, Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.25f, 0), Quaternion.identity);
-        }
-
-        if (_ammoCount == 0)
-        {
-            _uiManager.OutofAmmoFlickerRoutine();
-        }
     }
 
     public void Damage()
