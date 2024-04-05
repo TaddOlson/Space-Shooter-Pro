@@ -214,6 +214,8 @@ public class Player : MonoBehaviour
                     break;
             }
 
+            _uiManager.UpdateShields(_shieldDurability);
+
             return;
         }
 
