@@ -58,8 +58,8 @@ public class Player : MonoBehaviour
     private AudioClip _lunarShotClip;
     private AudioSource _audioSource;
 
-    private float _thrusterLevel;
-    private bool _isThrusterActive = false;
+    private float _fuelLevel = 100f;
+
     [SerializeField]
     private float _overheated;
     private bool _isOverheated = false;
@@ -132,16 +132,16 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(11.3f, transform.position.y, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _fuelLevel > 0)
         {
-            _speed += 5f;
+            _speed *= _speedMultiplier;
             _thruster.gameObject.SetActive(false);
             _thrusterBoostVisualizer.gameObject.SetActive(true);
             
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            _speed -= 5f;
+            _speed /= _speedMultiplier;
             _thrusterBoostVisualizer.gameObject.SetActive(false);
             _thruster.gameObject.SetActive(true);
             
@@ -213,8 +213,6 @@ public class Player : MonoBehaviour
                     _isShieldsActive = false;
                     break;
             }
-
-            _uiManager.UpdateShields(_shieldDurability);
 
             return;
         }

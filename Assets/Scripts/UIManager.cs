@@ -13,10 +13,6 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Sprite[] _livesSprites;
     [SerializeField]
-    private Image _shieldsImg;
-    [SerializeField]
-    private Sprite[] _shieldsSprites;
-    [SerializeField]
     private Text _gameOverText;
     [SerializeField]
     private Text _restartText;
@@ -27,7 +23,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _ammoDepletionText;
     [SerializeField]
-    private Slider _thrusterFuel;
+    private Slider _thrusterFuelSlider;
     [SerializeField]
     private Sprite[] _fuelSprites;
 
@@ -96,16 +92,6 @@ public class UIManager : MonoBehaviour
         
     }
 
-    public void UpdateShields(int currentShields)
-    {
-        _shieldsImg.sprite = _shieldsSprites[currentShields];
-
-        if (currentShields < 3)
-        {
-            currentShields++;
-        }
-    }
-
     public void UpdateAmmo(int playerAmmo)
     {
         _ammoCountText.text = "Ammo Count: " + playerAmmo.ToString();
@@ -131,8 +117,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateFuel(float currentFuel)
+    public void UpdateFuel(int currentFuel)
     {
+        _thrusterFuelImage.sprite = _fuelSprites[currentFuel];
 
     }
 }
