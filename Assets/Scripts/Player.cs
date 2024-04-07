@@ -58,11 +58,18 @@ public class Player : MonoBehaviour
     private AudioClip _lunarShotClip;
     private AudioSource _audioSource;
 
-    private float _fuelLevel = 100f;
-
     [SerializeField]
-    private float _overheated;
-    private bool _isOverheated = false;
+    private float _fuelFillCooldown = 5.0f;
+    [SerializeField]
+    private float _fuelLevelMax = 100.0f;
+    [SerializeField]
+    private float _fuelChargeLevel;
+    [SerializeField]
+    private float _fuelDecrease = 1.0f;
+    [SerializeField]
+    private float _fuelIncrease = 5.0f;
+    private bool _thrusterUsable = false;
+    private bool _usingThrusters = false;
 
     // Start is called before the first frame update
     void Start()
@@ -132,23 +139,83 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(11.3f, transform.position.y, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && _fuelLevel > 0)
+        ThrustersAcceleration();
+    }
+
+    public void ThrustersAcceleration()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _thrusterUsable)
         {
             _speed *= _speedMultiplier;
             _thruster.gameObject.SetActive(false);
             _thrusterBoostVisualizer.gameObject.SetActive(true);
-            
+            _usingThrusters = true;
+
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            _speed /= _speedMultiplier;
+            _speed = 5.0f;
             _thrusterBoostVisualizer.gameObject.SetActive(false);
             _thruster.gameObject.SetActive(true);
-            
+            _usingThrusters = false;
         }
 
+        if(_usingThrusters)
+        {
+            ThrustersActive();
+        }
+        else if (!_usingThrusters)
+        {
+            StartCoroutine(ThrusterReplenishRoutine());
+        }
     }
 
+    public void ThrustersActive()
+    {
+        if(_thrusterUsable == true)
+        {
+            _fuelChargeLevel -= Time.deltaTime * _fuelDecrease;
+            _uiManager.UpdateFuel(_fuelChargeLevel);
+            //_uiManager.UpdateThrusterScore(_fuelChargeLevel);
+
+            if(_fuelLevelMax <= 0)
+            {
+                _usingThrusters = false;
+                _thrusterUsable = false;
+                _speed = 0;
+            }
+        }
+    }
+
+    IEnumerator ThrusterReplenishRoutine()
+    {
+        yield return new WaitForSeconds(_fuelFillCooldown);
+        while (_fuelChargeLevel <= _fuelLevelMax && !_usingThrusters)
+        {
+            yield return null;
+            _fuelChargeLevel += Time.deltaTime * _fuelIncrease;
+            _uiManager.UpdateFuel(_fuelChargeLevel);
+        }
+        if(_fuelChargeLevel >= _fuelLevelMax)
+        {
+            _uiManager.UpdateFuel(_fuelChargeLevel);
+            _thrusterUsable = true;
+        }
+    }
+
+    public void FuelChargeLevel()
+    {
+        _fuelChargeLevel = Mathf.Clamp(_fuelChargeLevel, 0, _fuelLevelMax);
+
+        if (_fuelChargeLevel <= 0.0f)
+        {
+            _thrusterUsable = false;
+        }
+        else if (_fuelChargeLevel >= (_fuelLevelMax /2.5f))
+        {
+            _thrusterUsable = true;
+        }
+    }
 
     void FireLaser()
     {
@@ -331,6 +398,8 @@ public class Player : MonoBehaviour
         _lives++;
         _uiManager.UpdateLives(_lives);
     }
+
+
 
 }  
 

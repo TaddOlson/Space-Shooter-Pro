@@ -23,13 +23,15 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _ammoDepletionText;
     [SerializeField]
-    private Slider _thrusterFuelSlider;
+    private Slider _fuelSlider;
     [SerializeField]
-    private Sprite[] _fuelSprites;
+    private Image _fuelSliderFill;
+
 
 
     private GameManager _gameManager;
     private Player _player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,7 @@ public class UIManager : MonoBehaviour
         _mainMenuText.gameObject.SetActive(false);
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
         _player = GameObject.Find("Player").GetComponent<Player>();
+        
 
         if (_player == null)
         {
@@ -117,9 +120,22 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateFuel(int currentFuel)
+    public void UpdateFuel(float fuelValue)
     {
-        _thrusterFuelImage.sprite = _fuelSprites[currentFuel];
+        if (fuelValue >= 0 && fuelValue <= 100)
+        {
+            _fuelSlider.value = fuelValue;
+        }
+
+    }
+
+    public void UpdateFuelScore()
+    {
+        
+    }
+
+    public void UpdateFuelSlider()
+    {
 
     }
 }
