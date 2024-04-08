@@ -59,15 +59,15 @@ public class Player : MonoBehaviour
     private AudioSource _audioSource;
 
     [SerializeField]
-    private float _fuelFillCooldown = 5.0f;
+    private float _fuelFillCooldown = 3.0f;
     [SerializeField]
     private float _fuelLevelMax = 60.0f;
     [SerializeField]
     private float _fuelChargeLevel;
     [SerializeField]
-    private float _fuelDecrease = 1.0f;
+    private float _fuelDecrease = 20.0f;
     [SerializeField]
-    private float _fuelIncrease = 2.5f;
+    private float _fuelIncrease = 0.5f;
     private bool _thrusterUsable = true;
     private bool _usingThrusters = false;
 
@@ -178,7 +178,7 @@ public class Player : MonoBehaviour
             _uiManager.UpdateFuel(_fuelChargeLevel);
             //_uiManager.UpdateFuelLevel
 
-            if(_fuelLevelMax <= 0)
+            if(_fuelLevelMax < 60)
             {
                 _uiManager.UpdateFuel(_fuelChargeLevel);
                 _usingThrusters = false;

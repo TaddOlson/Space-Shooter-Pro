@@ -1247,10 +1247,10 @@ MonoBehaviour:
   _score: 0
   _laserSoundClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   _lunarShotClip: {fileID: 8300000, guid: 47b222c691993f1448d80fd7086d6077, type: 3}
-  _fuelFillCooldown: 5
-  _fuelLevelMax: 100
-  _fuelChargeLevel: 0
-  _fuelDecrease: 1
+  _fuelFillCooldown: 3
+  _fuelLevelMax: 60
+  _fuelChargeLevel: 60
+  _fuelDecrease: 20
   _fuelIncrease: 0.5
 --- !u!212 &1069163634
 SpriteRenderer:

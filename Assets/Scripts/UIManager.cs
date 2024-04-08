@@ -44,7 +44,8 @@ public class UIManager : MonoBehaviour
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
         _player = GameObject.Find("Player").GetComponent<Player>();
         _overheatedText.gameObject.SetActive(false);
-        _fuelSlider = GetComponent<Slider>();
+
+
 
         if (_player == null)
         {
