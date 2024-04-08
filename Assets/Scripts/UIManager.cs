@@ -26,7 +26,8 @@ public class UIManager : MonoBehaviour
     private Slider _fuelSlider;
     [SerializeField]
     private Image _fuelSliderFill;
-
+    [SerializeField]
+    private Text _overheatedText;
 
 
     private GameManager _gameManager;
@@ -42,7 +43,8 @@ public class UIManager : MonoBehaviour
         _mainMenuText.gameObject.SetActive(false);
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
         _player = GameObject.Find("Player").GetComponent<Player>();
-        
+        _overheatedText.gameObject.SetActive(false);
+        _fuelSlider = GetComponent<Slider>();
 
         if (_player == null)
         {
@@ -122,20 +124,36 @@ public class UIManager : MonoBehaviour
 
     public void UpdateFuel(float fuelValue)
     {
-        if (fuelValue >= 0 && fuelValue <= 100)
+        if (fuelValue >= 13 && fuelValue <= 60)
         {
             _fuelSlider.value = fuelValue;
         }
 
+        if(fuelValue < 60)
+        {
+            Debug.Log("Fuel Updating");
+        }
+
+        if(fuelValue == 13)
+        {
+            StartCoroutine(OverheatedRoutine());
+        }
+        else if(fuelValue >= 30)
+        {
+            StopCoroutine(OverheatedRoutine());
+        }
     }
 
-    public void UpdateFuelScore()
+    public void UpdateFuelLevel()
     {
-        
+
     }
 
-    public void UpdateFuelSlider()
+    IEnumerator OverheatedRoutine()
     {
-
+        _overheatedText.text = "OVERHEATED";
+        yield return new WaitForSeconds(1.0f);
+        _overheatedText.text = "";
+        yield return new WaitForSeconds(1.0f);
     }
 }

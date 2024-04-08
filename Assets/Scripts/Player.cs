@@ -61,14 +61,14 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _fuelFillCooldown = 5.0f;
     [SerializeField]
-    private float _fuelLevelMax = 100.0f;
+    private float _fuelLevelMax = 60.0f;
     [SerializeField]
     private float _fuelChargeLevel;
     [SerializeField]
     private float _fuelDecrease = 1.0f;
     [SerializeField]
-    private float _fuelIncrease = 5.0f;
-    private bool _thrusterUsable = false;
+    private float _fuelIncrease = 2.5f;
+    private bool _thrusterUsable = true;
     private bool _usingThrusters = false;
 
     // Start is called before the first frame update
@@ -176,10 +176,11 @@ public class Player : MonoBehaviour
         {
             _fuelChargeLevel -= Time.deltaTime * _fuelDecrease;
             _uiManager.UpdateFuel(_fuelChargeLevel);
-            //_uiManager.UpdateThrusterScore(_fuelChargeLevel);
+            //_uiManager.UpdateFuelLevel
 
             if(_fuelLevelMax <= 0)
             {
+                _uiManager.UpdateFuel(_fuelChargeLevel);
                 _usingThrusters = false;
                 _thrusterUsable = false;
                 _speed = 0;
@@ -205,9 +206,9 @@ public class Player : MonoBehaviour
 
     public void FuelChargeLevel()
     {
-        _fuelChargeLevel = Mathf.Clamp(_fuelChargeLevel, 0, _fuelLevelMax);
+        _fuelChargeLevel = Mathf.Clamp(_fuelChargeLevel, 13, _fuelLevelMax);
 
-        if (_fuelChargeLevel <= 0.0f)
+        if (_fuelChargeLevel <= 13.0f)
         {
             _thrusterUsable = false;
         }
@@ -234,11 +235,9 @@ public class Player : MonoBehaviour
         }
         else
         {
-
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
             _audioSource.clip = _laserSoundClip;
         }
-
 
         _audioSource.Play();
 

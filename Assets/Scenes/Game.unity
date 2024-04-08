@@ -391,6 +391,7 @@ MonoBehaviour:
   _ammoDepletionText: {fileID: 1775569055}
   _fuelSlider: {fileID: 1343735044}
   _fuelSliderFill: {fileID: 316838569}
+  _overheatedText: {fileID: 365355821}
 --- !u!114 &217127812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +471,7 @@ RectTransform:
   - {fileID: 1501071986}
   - {fileID: 1775569057}
   - {fileID: 1343735043}
+  - {fileID: 365355820}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -570,7 +572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &365355820
 RectTransform:
   m_ObjectHideFlags: 0
@@ -578,16 +580,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365355819}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1343735043}
-  m_RootOrder: 2
+  m_Father: {fileID: 217127815}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 66.5, y: -19.099998}
+  m_AnchoredPosition: {x: -254.50998, y: -356.00848}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &365355821
@@ -1749,7 +1751,7 @@ GameObject:
   - component: {fileID: 1343735043}
   - component: {fileID: 1343735044}
   m_Layer: 5
-  m_Name: Thruster_Slider
+  m_Name: Fuel_Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1768,7 +1770,6 @@ RectTransform:
   m_Children:
   - {fileID: 1674603144}
   - {fileID: 1037588987}
-  - {fileID: 365355820}
   m_Father: {fileID: 217127815}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1816,14 +1817,14 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1674603145}
+  m_TargetGraphic: {fileID: 316838569}
   m_FillRect: {fileID: 316838568}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 100
+  m_MinValue: 13
+  m_MaxValue: 60
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 60
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
