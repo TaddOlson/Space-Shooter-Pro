@@ -145,16 +145,15 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateFuelLevel()
-    {
-
-    }
-
     IEnumerator OverheatedRoutine()
     {
-        _overheatedText.text = "OVERHEATED";
-        yield return new WaitForSeconds(1.0f);
-        _overheatedText.text = "";
-        yield return new WaitForSeconds(1.0f);
+        while(true)
+        {
+            _overheatedText.text = "OVERHEATED";
+            yield return new WaitForSeconds(1.0f);
+            _overheatedText.text = "";
+            yield return new WaitForSeconds(1.0f);
+        }
+        
     }
 }

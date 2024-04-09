@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
-    {
+{
     [SerializeField]
     private float _speed = 3.5f;
     private float _speedMultiplier = 2f;
@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
     [SerializeField]
-    private int _ammoCount = 30;
+    private int _ammoCount = 15;
 
     private SpawnManager _spawnManager;
 
@@ -176,7 +176,6 @@ public class Player : MonoBehaviour
         {
             _fuelChargeLevel -= Time.deltaTime * _fuelDecrease;
             _uiManager.UpdateFuel(_fuelChargeLevel);
-            //_uiManager.UpdateFuelLevel
 
             if(_fuelLevelMax < 60)
             {
@@ -202,6 +201,7 @@ public class Player : MonoBehaviour
             _uiManager.UpdateFuel(_fuelChargeLevel);
             _thrusterUsable = true;
         }
+
     }
 
     public void FuelChargeLevel()
@@ -211,10 +211,25 @@ public class Player : MonoBehaviour
         if (_fuelChargeLevel <= 13.0f)
         {
             _thrusterUsable = false;
+            StartCoroutine(OverheatRoutine());
+            _uiManager.UpdateFuel(_fuelChargeLevel);
         }
         else if (_fuelChargeLevel >= (_fuelLevelMax /2.5f))
         {
             _thrusterUsable = true;
+        }
+    }
+
+    IEnumerator OverheatRoutine()
+    {
+        //When the charge level hits 13
+        //thrusts become unusable for X amount of seconds
+        //fuel still charges until a certain time
+        while(_fuelChargeLevel == 13 && _fuelChargeLevel < 30)
+        {
+            yield return new WaitForSeconds(8.0f);
+            _thrusterUsable = false;
+            _fuelIncrease = 0.1f;
         }
     }
 
