@@ -589,7 +589,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -254.50998, y: -356.00848}
+  m_AnchoredPosition: {x: -242, y: -351.81}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &365355821
@@ -645,6 +645,7 @@ GameObject:
   - component: {fileID: 407006479}
   - component: {fileID: 407006478}
   - component: {fileID: 407006481}
+  - component: {fileID: 407006482}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -777,6 +778,25 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!95 &407006482
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407006477}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a64b253d942f07946a203a07232e3b7a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &590692838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,7 +1271,7 @@ MonoBehaviour:
   _fuelLevelMax: 60
   _fuelChargeLevel: 60
   _fuelDecrease: 20
-  _fuelIncrease: 0.5
+  _fuelIncrease: 0.25
 --- !u!212 &1069163634
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2456,7 +2476,8 @@ MonoBehaviour:
   - {fileID: 743761318382681063, guid: 6b97ee28b6e9d0f4ca4f163802be4a84, type: 3}
   - {fileID: 925026708547977014, guid: 9f323b08483912d4f99b62dda92f89d0, type: 3}
   - {fileID: 6548642997675880468, guid: bc8a5c6950f73404fae53bdc8f76fb12, type: 3}
-  - {fileID: 4452321331632479573, guid: d969f26d238859846b159c5614b91bb5, type: 3}
+  _rarePowerup: {fileID: 4452321331632479573, guid: d969f26d238859846b159c5614b91bb5,
+    type: 3}
 --- !u!4 &1877394603
 Transform:
   m_ObjectHideFlags: 0

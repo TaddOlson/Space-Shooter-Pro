@@ -130,30 +130,14 @@ public class UIManager : MonoBehaviour
             _fuelSlider.value = fuelValue;
         }
 
-        if(fuelValue < 60)
+        if(fuelValue < 13.0f)
         {
-            Debug.Log("Fuel Updating");
+            _overheatedText.gameObject.SetActive(true);
         }
-
-        if(fuelValue == 13)
+        else if(fuelValue > 30.0f)
         {
-            StartCoroutine(OverheatedRoutine());
-        }
-        else if(fuelValue >= 30)
-        {
-            StopCoroutine(OverheatedRoutine());
+            _overheatedText.gameObject.SetActive(false);
         }
     }
 
-    IEnumerator OverheatedRoutine()
-    {
-        while(true)
-        {
-            _overheatedText.text = "OVERHEATED";
-            yield return new WaitForSeconds(1.0f);
-            _overheatedText.text = "";
-            yield return new WaitForSeconds(1.0f);
-        }
-        
-    }
 }

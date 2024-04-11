@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
     private int _score;
 
     private UIManager _uiManager;
+    private Camera _camera;
 
     [SerializeField]
     private AudioClip _laserSoundClip;
@@ -58,6 +59,8 @@ public class Player : MonoBehaviour
     private AudioClip _lunarShotClip;
     private AudioSource _audioSource;
 
+   //[SerializeField]
+   //private AudioClip _overheatedClip;
     [SerializeField]
     private float _fuelFillCooldown = 3.0f;
     [SerializeField]
@@ -67,9 +70,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _fuelDecrease = 20.0f;
     [SerializeField]
-    private float _fuelIncrease = 0.5f;
+    private float _fuelIncrease = 0.25f;
     private bool _thrusterUsable = true;
     private bool _usingThrusters = false;
+    private bool _isOverheated = false;
+    private float _overheatDuration = 15.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -79,6 +84,7 @@ public class Player : MonoBehaviour
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
         _shieldColor = _shieldVisualizer.GetComponent<SpriteRenderer>();
+        _camera = GameObject.Find("Animator").GetComponent<Camera>();
 
         if (_spawnManager == null)
         {
@@ -168,6 +174,8 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(ThrusterReplenishRoutine());
         }
+
+        StartCoroutine(OverheatedRoutine());
     }
 
     public void ThrustersActive()
@@ -201,36 +209,54 @@ public class Player : MonoBehaviour
             _uiManager.UpdateFuel(_fuelChargeLevel);
             _thrusterUsable = true;
         }
+        else if(_fuelChargeLevel <= 13.0f)
+        {
+            //_audioSource.clip = _overheatedClip;
+            _thrusterUsable = false;
+            StartCoroutine(OverheatedRoutine());
+            _uiManager.UpdateFuel(_fuelChargeLevel);
+        }
+
+        //_audioSource.Play();
 
     }
 
     public void FuelChargeLevel()
     {
-        _fuelChargeLevel = Mathf.Clamp(_fuelChargeLevel, 13, _fuelLevelMax);
+        _fuelChargeLevel = Mathf.Clamp(_fuelChargeLevel, 13.0f, _fuelLevelMax);
 
         if (_fuelChargeLevel <= 13.0f)
         {
             _thrusterUsable = false;
-            StartCoroutine(OverheatRoutine());
             _uiManager.UpdateFuel(_fuelChargeLevel);
         }
         else if (_fuelChargeLevel >= (_fuelLevelMax /2.5f))
         {
             _thrusterUsable = true;
         }
+
     }
 
-    IEnumerator OverheatRoutine()
+    IEnumerator OverheatedRoutine()
     {
-        //When the charge level hits 13
-        //thrusts become unusable for X amount of seconds
-        //fuel still charges until a certain time
-        while(_fuelChargeLevel == 13 && _fuelChargeLevel < 30)
+        yield return new WaitForSeconds(_overheatDuration);
+        while (_fuelChargeLevel <= 13 && _isOverheated == true)
         {
-            yield return new WaitForSeconds(8.0f);
+            
+            _fuelIncrease = 0.15f;
+            yield return null;
+            _uiManager.UpdateFuel(_fuelChargeLevel);
             _thrusterUsable = false;
-            _fuelIncrease = 0.1f;
         }
+        if(_fuelChargeLevel > 45.0f)
+        {
+            _isOverheated = false;
+            _uiManager.UpdateFuel(_fuelChargeLevel);
+            _thrusterUsable = true;
+        }
+
+        
+
     }
 
     void FireLaser()
