@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
     private int _score;
 
     private UIManager _uiManager;
-    private Camera _camera;
+    private MainCamera _mainCamera;
 
     [SerializeField]
     private AudioClip _laserSoundClip;
@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
         _shieldColor = _shieldVisualizer.GetComponent<SpriteRenderer>();
-        _camera = GameObject.Find("Animator").GetComponent<Camera>();
+        _mainCamera = FindObjectOfType<MainCamera>();
 
         if (_spawnManager == null)
         {
@@ -254,9 +254,6 @@ public class Player : MonoBehaviour
             _uiManager.UpdateFuel(_fuelChargeLevel);
             _thrusterUsable = true;
         }
-
-        
-
     }
 
     void FireLaser()
@@ -323,6 +320,8 @@ public class Player : MonoBehaviour
 
             return;
         }
+
+        _mainCamera.CameraShakeAnimation();
 
         _lives--;
 

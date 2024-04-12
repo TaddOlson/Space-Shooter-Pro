@@ -21,7 +21,6 @@ public class LunarShotRay : MonoBehaviour
 
             Destroy(this.gameObject);
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -105,7 +105,6 @@ public class Enemy : MonoBehaviour
 
         if (other.tag == "LunarShot")
         {
-            Destroy(this.gameObject);
             if (_player != null)
             {
                 _player.AddScore(20);
@@ -117,7 +116,6 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject.GetComponent<BoxCollider2D>());
             Destroy(this.gameObject, 2.8f);
         }
-
     }
 
   
