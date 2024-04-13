@@ -1280,11 +1280,12 @@ MonoBehaviour:
   _score: 0
   _laserSoundClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
   _lunarShotClip: {fileID: 8300000, guid: 47b222c691993f1448d80fd7086d6077, type: 3}
+  _overheatedClip: {fileID: 8300000, guid: b4219a5c504ce394aa8f337d08684574, type: 3}
   _fuelFillCooldown: 3
   _fuelLevelMax: 60
   _fuelChargeLevel: 60
   _fuelDecrease: 20
-  _fuelIncrease: 0.25
+  _fuelIncrease: 0.5
 --- !u!212 &1069163634
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2489,8 +2490,10 @@ MonoBehaviour:
   - {fileID: 743761318382681063, guid: 6b97ee28b6e9d0f4ca4f163802be4a84, type: 3}
   - {fileID: 925026708547977014, guid: 9f323b08483912d4f99b62dda92f89d0, type: 3}
   - {fileID: 6548642997675880468, guid: bc8a5c6950f73404fae53bdc8f76fb12, type: 3}
-  _rarePowerup: {fileID: 4452321331632479573, guid: d969f26d238859846b159c5614b91bb5,
-    type: 3}
+  - {fileID: 4452321331632479573, guid: d969f26d238859846b159c5614b91bb5, type: 3}
+  _table: 140000001400000014000000140000000a0000000a000000
+  _total: 0
+  _randomNumber: 0
 --- !u!4 &1877394603
 Transform:
   m_ObjectHideFlags: 0

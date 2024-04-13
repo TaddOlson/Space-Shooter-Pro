@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     private GameObject _laserPrefab;
     
     
+    
     private Player _player;
     private Animator _anim;
     private AudioSource _audioSource;
@@ -35,6 +36,10 @@ public class Enemy : MonoBehaviour
             Debug.LogError("The Animator is NULL.");
         }
 
+        if(_audioSource == null)
+        {
+            Debug.LogError("Audio Source is NULL");
+        }
     }
 
     // Update is called once per frame
@@ -67,8 +72,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {   
+    
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+
         if (other.tag == "Player")
         {
            
@@ -105,6 +112,7 @@ public class Enemy : MonoBehaviour
 
         if (other.tag == "LunarShot")
         {
+
             if (_player != null)
             {
                 _player.AddScore(20);
@@ -116,7 +124,14 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject.GetComponent<BoxCollider2D>());
             Destroy(this.gameObject, 2.8f);
         }
+
+        if (other.tag == "Enemy")
+        {
+            return;
+        }
     }
+
+    
 
   
 }

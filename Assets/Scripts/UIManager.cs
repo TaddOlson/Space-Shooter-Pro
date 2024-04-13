@@ -105,10 +105,14 @@ public class UIManager : MonoBehaviour
         if(playerAmmo == 0)
         {
             StartCoroutine(OutOfAmmoFlickerRoutine());
+
+            Debug.Log("Coroutine Run");
         }
         else
         {
             StopCoroutine(OutOfAmmoFlickerRoutine());
+
+            Debug.Log("Coroutine Stop");
         }
     }
 

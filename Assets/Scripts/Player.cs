@@ -59,8 +59,9 @@ public class Player : MonoBehaviour
     private AudioClip _lunarShotClip;
     private AudioSource _audioSource;
 
-   //[SerializeField]
-   //private AudioClip _overheatedClip;
+    [SerializeField]
+    private AudioClip _overheatedClip;
+    private bool _overheatedClipPlayed = false;
     [SerializeField]
     private float _fuelFillCooldown = 3.0f;
     [SerializeField]
@@ -70,7 +71,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _fuelDecrease = 20.0f;
     [SerializeField]
-    private float _fuelIncrease = 0.25f;
+    private float _fuelIncrease = 0.5f;
     private bool _thrusterUsable = true;
     private bool _usingThrusters = false;
     private bool _isOverheated = false;
@@ -208,16 +209,30 @@ public class Player : MonoBehaviour
         {
             _uiManager.UpdateFuel(_fuelChargeLevel);
             _thrusterUsable = true;
+
+            Debug.Log("Overheated" + _audioSource);
         }
         else if(_fuelChargeLevel <= 13.0f)
         {
-            //_audioSource.clip = _overheatedClip;
+            _audioSource.clip = _overheatedClip;
             _thrusterUsable = false;
             StartCoroutine(OverheatedRoutine());
             _uiManager.UpdateFuel(_fuelChargeLevel);
+
+            Debug.Log("Overheated" + _audioSource);
+
         }
 
-        //_audioSource.Play();
+        if(_fuelChargeLevel <= 13.0f && _overheatedClipPlayed == false)
+        {
+            _audioSource.Play();
+            _overheatedClipPlayed = true;
+        }
+        else if(_fuelChargeLevel >= _fuelLevelMax)
+        {
+            _overheatedClipPlayed = false;
+        }
+
 
     }
 
@@ -240,7 +255,7 @@ public class Player : MonoBehaviour
     IEnumerator OverheatedRoutine()
     {
         yield return new WaitForSeconds(_overheatDuration);
-        while (_fuelChargeLevel <= 13 && _isOverheated == true)
+        while (_fuelChargeLevel <= 13.0f && _isOverheated == true)
         {
             
             _fuelIncrease = 0.15f;
@@ -282,7 +297,7 @@ public class Player : MonoBehaviour
     }
 
     public void Damage()
-        {
+    {
         if (_hasBeenHit == true)
         {
             return;
@@ -437,8 +452,6 @@ public class Player : MonoBehaviour
         _lives++;
         _uiManager.UpdateLives(_lives);
     }
-
-
 
 }  
 

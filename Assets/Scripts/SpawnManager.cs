@@ -10,23 +10,53 @@ public class SpawnManager : MonoBehaviour
     private GameObject _enemyContainer;
     [SerializeField]
     private GameObject[] _powerups;
+
     [SerializeField]
-    private GameObject _rarePowerup;
-    
-
-    private bool _stopSpawning = false;
-
-    // Start is called before the first frame update
-    void Start()
+    private int[] _table =
     {
-        
+        20, //Triple Shot
+        20, //Speed
+        20, //Shields
+        20, //Reload
+        10, //Health
+        10 //Lunar
+    };
+    
+    private bool _stopSpawning = false;
+    [SerializeField]
+    private int _total;
+    [SerializeField]
+    private int _randomNumber;
+
+    public void Start()
+    {
+        //tally the total weight
+        //draw a random number between 0 and the total weight (100).
+        foreach(var item in _table)
+        {
+            _total += item;
+        }
+
+        _randomNumber = Random.Range(0, _total);
+
+        for (int i = 0; i < _table.Length; i++)
+        {
+            if(_randomNumber <= _table [i])
+            {
+                _powerups[i].SetActive(true);
+                return;
+            }
+            else
+            {
+                _randomNumber -= _table[i];
+            }
+        }
     }
 
     public void StartSpawning()
     {
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerupRoutine());
-        StartCoroutine(SpawnRarePowerupRoutine());
     }
 
     IEnumerator SpawnEnemyRoutine()
@@ -43,24 +73,17 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerupRoutine()
     {
+        //pick random number between 0 - 6
+        //if number is 5
+        //pick a random number between 0 - 6
+
         yield return new WaitForSeconds(3.0f);
         while (_stopSpawning == false)
         {
                 Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-                int randomPowerUp = Random.Range(0, 5);
+                int randomPowerUp = Random.Range(0, 6);
                 Instantiate(_powerups[randomPowerUp], posToSpawn, Quaternion.identity);
                 yield return new WaitForSeconds(Random.Range(3, 8));
-        }
-    }
-
-    IEnumerator SpawnRarePowerupRoutine()
-    {
-        yield return new WaitForSeconds(5.0f);
-        while (_stopSpawning == false)
-        {
-            Vector3 randomSpawnLocation = new Vector3(Random.Range(-8f, 8f), 7, 0);
-            Instantiate(_rarePowerup, randomSpawnLocation, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(15f, 30f));
         }
     }
 
