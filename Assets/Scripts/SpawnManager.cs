@@ -9,17 +9,16 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyContainer;
     [SerializeField]
-    private GameObject[] _powerups;
-
+    private List<GameObject> _powerups;
     [SerializeField]
     private int[] _table =
     {
-        20, //Triple Shot
-        20, //Speed
-        20, //Shields
-        20, //Reload
-        10, //Health
-        10 //Lunar
+        200, //Triple Shot
+        200, //Speed
+        200, //Shields
+        200, //Reload
+        100, //Health
+        100 //Lunar
     };
     
     private bool _stopSpawning = false;
@@ -28,34 +27,9 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private int _randomNumber;
 
-    public void Start()
-    {
-        //tally the total weight
-        //draw a random number between 0 and the total weight (100).
-        foreach(var item in _table)
-        {
-            _total += item;
-        }
-
-        _randomNumber = Random.Range(0, _total);
-
-        for (int i = 0; i < _table.Length; i++)
-        {
-            if(_randomNumber <= _table [i])
-            {
-                _powerups[i].SetActive(true);
-                return;
-            }
-            else
-            {
-                _randomNumber -= _table[i];
-            }
-        }
-    }
-
     public void StartSpawning()
     {
-        StartCoroutine(SpawnEnemyRoutine());
+        StopCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerupRoutine());
     }
 
@@ -73,10 +47,6 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerupRoutine()
     {
-        //pick random number between 0 - 6
-        //if number is 5
-        //pick a random number between 0 - 6
-
         yield return new WaitForSeconds(3.0f);
         while (_stopSpawning == false)
         {
@@ -84,6 +54,31 @@ public class SpawnManager : MonoBehaviour
                 int randomPowerUp = Random.Range(0, 6);
                 Instantiate(_powerups[randomPowerUp], posToSpawn, Quaternion.identity);
                 yield return new WaitForSeconds(Random.Range(3, 8));
+                PowerupSpawnTable();
+        }
+    }
+
+    public void PowerupSpawnTable()
+    {
+        foreach (var item in _table)
+        {
+            _total += item;
+            _total = 1000;
+        }
+
+        _randomNumber = Random.Range(0, _total);
+
+        for (int i = 0; i < _table.Length; i++)
+        {
+            if (_randomNumber <= _table[i])
+            {
+                _powerups[i].SetActive(true);
+                return;
+            }
+            else
+            {
+                _randomNumber -= _table[i];
+            }
         }
     }
 

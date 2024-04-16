@@ -209,8 +209,6 @@ public class Player : MonoBehaviour
         {
             _uiManager.UpdateFuel(_fuelChargeLevel);
             _thrusterUsable = true;
-
-            Debug.Log("Overheated" + _audioSource);
         }
         else if(_fuelChargeLevel <= 13.0f)
         {
@@ -383,7 +381,7 @@ public class Player : MonoBehaviour
     IEnumerator SpeedPowerDownRoutine()
     {
         yield return new WaitForSeconds(5.0f);
-        _speed /= _speedMultiplier;
+        _speed = 5.0f;
         _thruster.gameObject.SetActive(true);
         _speedBoostVisualizer.gameObject.SetActive(false);
     }
