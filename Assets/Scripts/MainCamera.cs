@@ -13,12 +13,6 @@ public class MainCamera : MonoBehaviour
         _anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void CameraShakeAnimation()
     {
         if (_isCameraShakeActive == false)

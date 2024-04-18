@@ -13,12 +13,12 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private int[] _table =
     {
-        200, //Triple Shot
-        200, //Speed
-        200, //Shields
-        200, //Reload
-        100, //Health
-        100 //Lunar
+        199, //Triple Shot
+        199, //Speed
+        199, //Shields
+        198, //Reload
+        130, //Health
+        75 //Lunar
     };
     
     private bool _stopSpawning = false;
@@ -29,7 +29,7 @@ public class SpawnManager : MonoBehaviour
 
     public void StartSpawning()
     {
-        StopCoroutine(SpawnEnemyRoutine());
+        StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerupRoutine());
     }
 
