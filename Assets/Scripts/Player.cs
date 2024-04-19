@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _lunarShotPrefab;
 
-
     private bool _hasBeenHit = false;
     private float _damageDelay = 1.0f;
     private float _damageCooldown = 0f;
@@ -42,7 +41,6 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject _shieldVisualizer, _speedBoostVisualizer, _thrusterBoostVisualizer;
-
 
     [SerializeField]
     private GameObject _rightEngine, _leftEngine;
@@ -122,6 +120,7 @@ public class Player : MonoBehaviour
             {
                 return;
             }
+
             FireLaser();
         }
     }
@@ -230,8 +229,6 @@ public class Player : MonoBehaviour
         {
             _overheatedClipPlayed = false;
         }
-
-
     }
 
     public void FuelChargeLevel()

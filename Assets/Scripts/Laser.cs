@@ -20,6 +20,7 @@ public class Laser : MonoBehaviour
             MoveDown();
         }
     }
+
     void MoveUp()
     {
         transform.Translate(Vector3.up * _speed * Time.deltaTime);
@@ -58,6 +59,11 @@ public class Laser : MonoBehaviour
 
     }
 
+    public bool IsEnemyLaser()
+    {
+        return _isEnemyLaser;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player" && _isEnemyLaser == true)
@@ -70,5 +76,4 @@ public class Laser : MonoBehaviour
             }
         }
     }
-
 }

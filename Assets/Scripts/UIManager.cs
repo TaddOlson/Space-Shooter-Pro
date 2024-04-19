@@ -29,14 +29,12 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _overheatedText;
 
-
     private GameManager _gameManager;
     private Player _player;
 
     // Start is called before the first frame update
     void Start()
     {
-        
         _scoreText.text = "Score: " + 0;
         _gameOverText.gameObject.SetActive(false);
         _restartText.gameObject.SetActive(false);
@@ -44,8 +42,6 @@ public class UIManager : MonoBehaviour
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
         _player = GameObject.Find("Player").GetComponent<Player>();
         _overheatedText.gameObject.SetActive(false);
-
-
 
         if (_player == null)
         {
@@ -95,7 +91,6 @@ public class UIManager : MonoBehaviour
             _gameOverText.text = "";
             yield return new WaitForSeconds(0.5f);
         }
-        
     }
 
     public void UpdateAmmo(int playerAmmo)
@@ -143,5 +138,4 @@ public class UIManager : MonoBehaviour
             _overheatedText.gameObject.SetActive(false);
         }
     }
-
 }

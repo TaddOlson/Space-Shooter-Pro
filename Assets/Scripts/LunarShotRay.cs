@@ -22,5 +22,4 @@ public class LunarShotRay : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
 }
