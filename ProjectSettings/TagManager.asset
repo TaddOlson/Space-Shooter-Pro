@@ -15,6 +15,7 @@ TagManager:
   - Asteroid
   - EnemyLaser
   - LunarShot
+  - AngledLaser
   layers:
   - Default
   - TransparentFX

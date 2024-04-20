@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CalculateMovement();
+        EnemyDownMove();
 
         EnemyFire();
     }
@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void CalculateMovement()
+    public void EnemyDownMove()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
@@ -74,7 +74,6 @@ public class Enemy : MonoBehaviour
             transform.position = new Vector3(randomX, 8, 0);
         }
     }
-
     
     private void OnTriggerEnter2D(Collider2D other) 
     {

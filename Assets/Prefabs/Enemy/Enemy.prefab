@@ -45,11 +45,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9208527065640390282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71d53c24dcecd76488d94b8bc8ff895a, type: 3}
+  m_Script: {fileID: 11500000, guid: fa79864e3f315964eaa640f9cc7e5463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
-  _laserPrefab: {fileID: 2152726121587596225, guid: 9a77dc0011273634e8cfcd4ff99e8450,
+  _laserPrefab: {fileID: 986928162645961431, guid: 22127b2b1f7ffa74db166768c94f67ff,
     type: 3}
 --- !u!212 &4640865789622060331
 SpriteRenderer:

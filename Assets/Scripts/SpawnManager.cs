@@ -7,6 +7,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyPrefab;
     [SerializeField]
+    private GameObject _diagonalEnemyPrefab;
+    [SerializeField]
     private GameObject _enemyContainer;
     [SerializeField]
     private List<GameObject> _powerups;
@@ -20,12 +22,15 @@ public class SpawnManager : MonoBehaviour
         130, //Health
         75 //Lunar
     };
-    
+
     private bool _stopSpawning = false;
     [SerializeField]
     private int _total;
     [SerializeField]
     private int _randomNumber;
+    [SerializeField]
+    private GameObject[] _enemyAngleSpawn;
+
 
     public void StartSpawning()
     {
@@ -36,6 +41,7 @@ public class SpawnManager : MonoBehaviour
 
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerupRoutine());
+               
     }
 
     IEnumerator SpawnEnemyRoutine()
@@ -43,12 +49,13 @@ public class SpawnManager : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         while (_stopSpawning == false)
         {
-           Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
-            newEnemy.transform.parent = _enemyContainer.transform; 
+            newEnemy.transform.parent = _enemyContainer.transform;
             yield return new WaitForSeconds(5.0f);
         }
     }
+
 
     IEnumerator SpawnPowerupRoutine()
     {
@@ -59,6 +66,8 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(3, 8));
         }
     }
+
+    
 
     public void PowerupSpawnTable()
     {
@@ -83,4 +92,7 @@ public class SpawnManager : MonoBehaviour
     {
         _stopSpawning = true;
     }
+
+    
+    
 }
