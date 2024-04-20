@@ -103,7 +103,7 @@ public class UIManager : MonoBehaviour
 
             Debug.Log("Coroutine Run");
         }
-        else
+        else if(playerAmmo > 0)
         {
             StopCoroutine(OutOfAmmoFlickerRoutine());
 
