@@ -14,16 +14,12 @@ public class EnemyDiagonal : MonoBehaviour
     private AudioSource _audioSource;
     private float _fireRate = 2.0f;
     private float _canFire = 1.0f;
-    
-    private SpawnManager _spawnManager;
 
     // Start is called before the first frame update
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
         _audioSource = GetComponent<AudioSource>();
-        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-
 
         if (_player == null)
         {
@@ -53,7 +49,7 @@ public class EnemyDiagonal : MonoBehaviour
 
     public void EnemyDiagonalMovement()
     {
-        transform.Translate(new Vector3(5.0f, -3.0f, 0).normalized * _speed * Time.deltaTime);
+        transform.Translate(new Vector3(-5.0f, -3.0f, 0).normalized * _speed * Time.deltaTime);
 
         if (transform.position.y < -6.0f && transform.position.x > 8.0f)
         {
@@ -83,6 +79,10 @@ public class EnemyDiagonal : MonoBehaviour
 
     public void EnemyDeath()
     {
-
+        _anim.SetTrigger("OnEnemyDeath");
+        _speed = 0;
+        _audioSource.Play();
+        Destroy(gameObject.GetComponent<CapsuleCollider2D>());
+        Destroy(this.gameObject, 2.8f);
     }
 }

@@ -7,7 +7,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyPrefab;
     [SerializeField]
-    private GameObject _diagonalEnemyPrefab;
+    private GameObject _enemyDiagonalPrefab;
     [SerializeField]
     private GameObject _enemyContainer;
     [SerializeField]
@@ -31,7 +31,6 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject[] _enemyAngleSpawn;
 
-
     public void StartSpawning()
     {
         foreach (var item in _table)
@@ -41,7 +40,6 @@ public class SpawnManager : MonoBehaviour
 
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerupRoutine());
-               
     }
 
     IEnumerator SpawnEnemyRoutine()
@@ -56,6 +54,15 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    public void EnemySpawn()
+    {
+        Random.Range(0, 1);
+
+        _enemyAngleSpawn[0] = Instantiate(_enemyDiagonalPrefab, new Vector3(-11.0f, 7.7f, 0), Quaternion.identity);
+        _enemyAngleSpawn[1] = Instantiate(_enemyDiagonalPrefab, new Vector3(11, 7.7f, 0), Quaternion.Euler(new Vector3(0, 0, 135)));
+        
+
+    }
 
     IEnumerator SpawnPowerupRoutine()
     {
@@ -66,8 +73,6 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(3, 8));
         }
     }
-
-    
 
     public void PowerupSpawnTable()
     {
