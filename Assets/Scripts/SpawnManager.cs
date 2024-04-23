@@ -5,9 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _enemyPrefab;
-    [SerializeField]
-    private GameObject _enemyDiagonalPrefab;
+    private GameObject[] _enemyPrefab;
     [SerializeField]
     private GameObject _enemyContainer;
     [SerializeField]
@@ -48,20 +46,21 @@ public class SpawnManager : MonoBehaviour
         while (_stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-            GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
+            int randomEnemy = Random.Range(0, 2);
+            EnemyAngleSpawn();
+            GameObject newEnemy = Instantiate(_enemyPrefab[randomEnemy], posToSpawn, Quaternion.identity);
             newEnemy.transform.parent = _enemyContainer.transform;
             yield return new WaitForSeconds(5.0f);
         }
     }
 
-    public void EnemySpawn()
+    public void EnemyAngleSpawn()
     {
-        Random.Range(0, 1);
+        EnemyDiagonal enemyDiagonal = transform.GetComponent<EnemyDiagonal>();
 
-        _enemyAngleSpawn[0] = Instantiate(_enemyDiagonalPrefab, new Vector3(-11.0f, 7.7f, 0), Quaternion.identity);
-        _enemyAngleSpawn[1] = Instantiate(_enemyDiagonalPrefab, new Vector3(11, 7.7f, 0), Quaternion.Euler(new Vector3(0, 0, 135)));
-        
+        _enemyAngleSpawn[0] = Instantiate(enemyDiagonal, new Vector3(-11.0f, 7.7f, 0), Quaternion.identity);
 
+        _enemyAngleSpawn[1] = Instantiate(enemyDiagonal, new Vector3(11, 7.7f, 0), Quaternion.Euler(new Vector3(0, 0, 135)));  
     }
 
     IEnumerator SpawnPowerupRoutine()

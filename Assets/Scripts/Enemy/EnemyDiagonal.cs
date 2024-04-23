@@ -15,11 +15,15 @@ public class EnemyDiagonal : MonoBehaviour
     private float _fireRate = 2.0f;
     private float _canFire = 1.0f;
 
+    private SpawnManager _spawnManager;
+
     // Start is called before the first frame update
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
         _audioSource = GetComponent<AudioSource>();
+        _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+
 
         if (_player == null)
         {
@@ -42,23 +46,33 @@ public class EnemyDiagonal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EnemyDiagonalMovement();
+
+        EnemyDiagonalMovementRight();
+        EnemyDiagonalMovementLeft();
 
         EnemyFire();
     }
 
-    public void EnemyDiagonalMovement()
+    public void EnemyDiagonalMovementRight()
     {
-        transform.Translate(new Vector3(-5.0f, -3.0f, 0).normalized * _speed * Time.deltaTime);
+        transform.Translate(new Vector3(-30.0f, 180.0f, 0).normalized * _speed * Time.deltaTime);
 
         if (transform.position.y < -6.0f && transform.position.x > 8.0f)
         {
             transform.position = new Vector3(-11.0f, 7.7f, 0);
         }
-        else if (transform.position.y < -6.0f && transform.position.x < -8.0f)
+        
+    }
+
+    public void EnemyDiagonalMovementLeft()
+    {
+        transform.Translate(new Vector3(30.0f, -180.0f, 0).normalized * _speed * Time.deltaTime);
+
+        if (transform.position.y < -6.0f && transform.position.x < -8.0f)
         {
             transform.position = new Vector3(11.0f, 7.7f, 0);
         }
+
     }
 
     public void EnemyFire()
@@ -77,12 +91,61 @@ public class EnemyDiagonal : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if (other.tag == "Player")
+        {
+
+            Player player = other.transform.GetComponent<Player>();
+
+            if (player != null)
+            {
+                player.Damage();
+            }
+
+            EnemyDeath();
+
+        }
+
+        if (other.tag == "Laser")
+        {
+            Laser laser = other.transform.GetComponent<Laser>();
+
+            if (laser != null && laser.IsEnemyLaser() == true)
+            {
+                return;
+            }
+
+            Destroy(other.gameObject);
+            if (_player != null)
+            {
+                _player.AddScore(10);
+            }
+
+            EnemyDeath();
+        }
+
+
+
+        if (other.tag == "LunarShot")
+        {
+
+            if (_player != null)
+            {
+                _player.AddScore(20);
+            }
+
+            EnemyDeath();
+        }
+    }
+
     public void EnemyDeath()
     {
         _anim.SetTrigger("OnEnemyDeath");
         _speed = 0;
         _audioSource.Play();
-        Destroy(gameObject.GetComponent<CapsuleCollider2D>());
+        Destroy(gameObject.GetComponent<BoxCollider2D>());
         Destroy(this.gameObject, 2.8f);
     }
 }
