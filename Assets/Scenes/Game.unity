@@ -2541,8 +2541,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30cc9f6fd5b711845bbe262a515ddba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 9208527065640390282, guid: 387980c11f30c204ebe353e1e9178f97,
-    type: 3}
+  _enemyPrefab:
+  - {fileID: 9208527065640390282, guid: 387980c11f30c204ebe353e1e9178f97, type: 3}
+  - {fileID: 8589630162614338947, guid: 3b2f526c3a1420c40824872882ba6af3, type: 3}
   _enemyDiagonalPrefab: {fileID: 8589630162614338947, guid: 3b2f526c3a1420c40824872882ba6af3,
     type: 3}
   _enemyContainer: {fileID: 1353810687}
@@ -2848,7 +2849,7 @@ PrefabInstance:
     - target: {fileID: 946137350916691193, guid: 3361d22d5f6d8b04889c91cc739e4dad,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6328728830217250717, guid: 3361d22d5f6d8b04889c91cc739e4dad,
         type: 3}

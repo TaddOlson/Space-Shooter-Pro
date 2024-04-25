@@ -47,20 +47,28 @@ public class SpawnManager : MonoBehaviour
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             int randomEnemy = Random.Range(0, 2);
-            EnemyAngleSpawn();
             GameObject newEnemy = Instantiate(_enemyPrefab[randomEnemy], posToSpawn, Quaternion.identity);
+            EnemySpawn();
             newEnemy.transform.parent = _enemyContainer.transform;
             yield return new WaitForSeconds(5.0f);
         }
     }
 
-    public void EnemyAngleSpawn()
+    public void EnemySpawn()
     {
-        EnemyDiagonal enemyDiagonal = transform.GetComponent<EnemyDiagonal>();
 
-        _enemyAngleSpawn[0] = Instantiate(enemyDiagonal, new Vector3(-11.0f, 7.7f, 0), Quaternion.identity);
+        int randomAngleSpawn = Random.Range(0, 2);
 
-        _enemyAngleSpawn[1] = Instantiate(enemyDiagonal, new Vector3(11, 7.7f, 0), Quaternion.Euler(new Vector3(0, 0, 135)));  
+        if(_enemyPrefab[0])
+        {
+            transform.position = new Vector3(Random.Range(-8f, 8f), 7, 0);
+        }
+        else if(_enemyPrefab[1])
+        {
+            _enemyAngleSpawn[randomAngleSpawn].length;
+        }
+
+          
     }
 
     IEnumerator SpawnPowerupRoutine()

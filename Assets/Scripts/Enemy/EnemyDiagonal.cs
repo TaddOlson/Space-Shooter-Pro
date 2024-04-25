@@ -46,10 +46,6 @@ public class EnemyDiagonal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        EnemyDiagonalMovementRight();
-        EnemyDiagonalMovementLeft();
-
         EnemyFire();
     }
 
@@ -125,8 +121,6 @@ public class EnemyDiagonal : MonoBehaviour
 
             EnemyDeath();
         }
-
-
 
         if (other.tag == "LunarShot")
         {
