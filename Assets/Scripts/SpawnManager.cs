@@ -57,15 +57,19 @@ public class SpawnManager : MonoBehaviour
     public void EnemySpawn()
     {
 
+        Vector3 normalToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
         int randomAngleSpawn = Random.Range(0, 2);
+        int randomEnemy = Random.Range(0, 2);
 
-        if(_enemyPrefab[0])
+        if (randomEnemy == 0)
         {
-            transform.position = new Vector3(Random.Range(-8f, 8f), 7, 0);
+            GameObject firstEnemy = Instantiate(_enemyPrefab[0], normalToSpawn, Quaternion.identity);
+            firstEnemy.transform.parent = _enemyContainer.transform;
         }
-        else if(_enemyPrefab[1])
+        else if (randomEnemy == 1)
         {
-            _enemyAngleSpawn[randomAngleSpawn].length;
+            GameObject diagonalEnemy = Instantiate(_enemyPrefab[1], _enemyAngleSpawn[randomAngleSpawn], Quaternion.identity);
+            diagonalEnemy.transform.parent = _enemyContainer.transform;
         }
 
           
