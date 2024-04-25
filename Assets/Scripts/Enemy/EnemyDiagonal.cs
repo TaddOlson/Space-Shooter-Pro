@@ -17,6 +17,8 @@ public class EnemyDiagonal : MonoBehaviour
 
     private SpawnManager _spawnManager;
 
+    private int _enemyDirection;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,19 +48,31 @@ public class EnemyDiagonal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_enemyDirection == 0)
+        {
+            EnemyDiagonalMovementLeft();
+        }
+        else if (_enemyDirection == 1)
+        {
+            EnemyDiagonalMovementRight();
+        }
+
         EnemyFire();
+    }
+
+    public void EnemyDirection(int direction)
+    {
+        _enemyDirection = direction;
     }
 
     public void EnemyDiagonalMovementRight()
     {
-        _spawnManager.EnemySpawn();
         transform.Translate(new Vector3(-30.0f, 180.0f, 0).normalized * _speed * Time.deltaTime);
 
         if (transform.position.y < -6.0f && transform.position.x > 8.0f)
         {
             transform.position = new Vector3(-11.0f, 7.7f, 0);
         }
-        
     }
 
     public void EnemyDiagonalMovementLeft()
@@ -108,8 +122,14 @@ public class EnemyDiagonal : MonoBehaviour
         if (other.tag == "Laser")
         {
             Laser laser = other.transform.GetComponent<Laser>();
+            AngledLaser angledLaser = other.transform.GetComponent<AngledLaser>();
 
             if (laser != null && laser.IsEnemyLaser() == true)
+            {
+                return;
+            }
+
+            if (angledLaser != null && angledLaser.IsEnemyLaser() == true)
             {
                 return;
             }

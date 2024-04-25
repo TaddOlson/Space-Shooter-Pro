@@ -45,11 +45,7 @@ public class SpawnManager : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         while (_stopSpawning == false)
         {
-            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-            int randomEnemy = Random.Range(0, 2);
-            GameObject newEnemy = Instantiate(_enemyPrefab[randomEnemy], posToSpawn, Quaternion.identity);
             EnemySpawn();
-            newEnemy.transform.parent = _enemyContainer.transform;
             yield return new WaitForSeconds(5.0f);
         }
     }
@@ -68,8 +64,10 @@ public class SpawnManager : MonoBehaviour
         }
         else if (randomEnemy == 1)
         {
-            GameObject diagonalEnemy = Instantiate(_enemyPrefab[1], _enemyAngleSpawn[randomAngleSpawn], Quaternion.identity);
-            diagonalEnemy.transform.parent = _enemyContainer.transform;
+            GameObject enemy = Instantiate(_enemyPrefab[1], _enemyAngleSpawn[randomAngleSpawn].transform.position, Quaternion.identity);
+            enemy.transform.parent = _enemyContainer.transform;
+            EnemyDiagonal enemyDiagonal = enemy.GetComponent<EnemyDiagonal>();
+            enemyDiagonal.EnemyDirection(randomAngleSpawn);
         }
 
           
