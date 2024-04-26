@@ -68,6 +68,7 @@ public class SpawnManager : MonoBehaviour
             enemy.transform.parent = _enemyContainer.transform;
             EnemyDiagonal enemyDiagonal = enemy.GetComponent<EnemyDiagonal>();
             enemyDiagonal.EnemyDirection(randomAngleSpawn);
+            
         }
 
           

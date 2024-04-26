@@ -67,7 +67,7 @@ public class EnemyDiagonal : MonoBehaviour
 
     public void EnemyDiagonalMovementRight()
     {
-        transform.Translate(new Vector3(-30.0f, 180.0f, 0).normalized * _speed * Time.deltaTime);
+        transform.Translate(new Vector3(-15.0f, -10.0f, 0).normalized * _speed * Time.deltaTime);
 
         if (transform.position.y < -6.0f && transform.position.x > 8.0f)
         {
@@ -77,7 +77,7 @@ public class EnemyDiagonal : MonoBehaviour
 
     public void EnemyDiagonalMovementLeft()
     {
-        transform.Translate(new Vector3(30.0f, -180.0f, 0).normalized * _speed * Time.deltaTime);
+        transform.Translate(new Vector3(15.0f, -10.0f, 0).normalized * _speed * Time.deltaTime);
 
         if (transform.position.y < -6.0f && transform.position.x < -8.0f)
         {

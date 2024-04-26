@@ -7,19 +7,29 @@ public class AngledLaser : MonoBehaviour
     [SerializeField]
     private float _speed = 8.0f;
     private bool _isEnemyLaser = false;
-
+    private int _laserDirection;
 
     // Update is called once per frame
     void Update()
     {
-        RightDiagonalLaser();
+        if (_laserDirection == 0)
+        {
+            RightDiagonalLaser();
+        }
+        else if (_laserDirection == 1)
+        {
+            LeftDiagonalLaser();
+        }
+    }
 
-        LeftDiagonalLaser();
+    public void LaserDirection (int direction)
+    {
+        _laserDirection = direction;
     }
 
     public void RightDiagonalLaser()
     {
-        transform.Translate(new Vector3(-30.0f, 180.0f, 0).normalized * _speed * Time.deltaTime);
+        transform.Translate(new Vector3(-15.0f, -10.0f, 0).normalized * _speed * Time.deltaTime);
 
         if (transform.position.y < -8f)
         {
@@ -35,7 +45,7 @@ public class AngledLaser : MonoBehaviour
 
     public void LeftDiagonalLaser()
     {
-        transform.Translate(new Vector3(30.0f, -180.0f, 0).normalized * _speed * Time.deltaTime);
+        transform.Translate(new Vector3(15.0f, -10.0f, 0).normalized * _speed * Time.deltaTime);
 
         if (transform.position.y < -8f)
         {

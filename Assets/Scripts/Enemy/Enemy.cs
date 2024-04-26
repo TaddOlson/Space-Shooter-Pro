@@ -95,8 +95,14 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Laser")
         {
             Laser laser = other.transform.GetComponent<Laser>();
+            AngledLaser angledLaser = other.transform.GetComponent<AngledLaser>();
 
             if (laser != null && laser.IsEnemyLaser() == true)
+            {
+                return;
+            }
+
+            if (angledLaser != null && angledLaser.IsEnemyLaser() == true)
             {
                 return;
             }
