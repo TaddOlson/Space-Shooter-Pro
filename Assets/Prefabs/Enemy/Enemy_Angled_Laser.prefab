@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459fcce4f401c9844bb3a0abaa7567ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 8
 --- !u!1 &3413690464364791567
 GameObject:
   m_ObjectHideFlags: 0
@@ -22,7 +23,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3413690464364791566}
   m_Layer: 0
-  m_Name: Enemy_Diagonal_Laser
+  m_Name: Enemy_Angled_Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,6 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459fcce4f401c9844bb3a0abaa7567ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 8
 --- !u!1001 &417596003128118733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -106,22 +108,22 @@ PrefabInstance:
     - target: {fileID: 6697218367613742722, guid: 4a7172076880ce844b1bfe4ce9567acb,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9999537
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6697218367613742722, guid: 4a7172076880ce844b1bfe4ce9567acb,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -8.731148e-10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6697218367613742722, guid: 4a7172076880ce844b1bfe4ce9567acb,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 4.6566123e-10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6697218367613742722, guid: 4a7172076880ce844b1bfe4ce9567acb,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.009623079
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6697218367613742722, guid: 4a7172076880ce844b1bfe4ce9567acb,
         type: 3}
@@ -136,7 +138,7 @@ PrefabInstance:
     - target: {fileID: 6697218367613742722, guid: 4a7172076880ce844b1bfe4ce9567acb,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -1.103
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7867208951958713911, guid: 4a7172076880ce844b1bfe4ce9567acb,
         type: 3}

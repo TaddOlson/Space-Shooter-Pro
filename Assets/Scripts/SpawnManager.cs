@@ -56,6 +56,7 @@ public class SpawnManager : MonoBehaviour
         Vector3 normalToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
         int randomAngleSpawn = Random.Range(0, 2);
         int randomEnemy = Random.Range(0, 2);
+        
 
         if (randomEnemy == 0)
         {
@@ -68,10 +69,8 @@ public class SpawnManager : MonoBehaviour
             enemy.transform.parent = _enemyContainer.transform;
             EnemyDiagonal enemyDiagonal = enemy.GetComponent<EnemyDiagonal>();
             enemyDiagonal.EnemyDirection(randomAngleSpawn);
-            
-        }
-
-          
+            enemyDiagonal.transform.rotation = _enemyAngleSpawn[randomAngleSpawn].transform.rotation;
+        } 
     }
 
     IEnumerator SpawnPowerupRoutine()

@@ -15,8 +15,6 @@ public class EnemyDiagonal : MonoBehaviour
     private float _fireRate = 2.0f;
     private float _canFire = 1.0f;
 
-    private SpawnManager _spawnManager;
-
     private int _enemyDirection;
 
     // Start is called before the first frame update
@@ -24,8 +22,6 @@ public class EnemyDiagonal : MonoBehaviour
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
         _audioSource = GetComponent<AudioSource>();
-        _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
-
 
         if (_player == null)
         {
@@ -50,11 +46,11 @@ public class EnemyDiagonal : MonoBehaviour
     {
         if (_enemyDirection == 0)
         {
-            EnemyDiagonalMovementLeft();
+            EnemyDiagonalMovementRight();
         }
         else if (_enemyDirection == 1)
         {
-            EnemyDiagonalMovementRight();
+            EnemyDiagonalMovementLeft();
         }
 
         EnemyFire();
@@ -67,7 +63,8 @@ public class EnemyDiagonal : MonoBehaviour
 
     public void EnemyDiagonalMovementRight()
     {
-        transform.Translate(new Vector3(-15.0f, -10.0f, 0).normalized * _speed * Time.deltaTime);
+        transform.Translate(Vector3.down * _speed * Time.deltaTime);
+        transform.rotation = Quaternion.Euler(0, 0, 60);
 
         if (transform.position.y < -6.0f && transform.position.x > 8.0f)
         {
@@ -77,7 +74,8 @@ public class EnemyDiagonal : MonoBehaviour
 
     public void EnemyDiagonalMovementLeft()
     {
-        transform.Translate(new Vector3(15.0f, -10.0f, 0).normalized * _speed * Time.deltaTime);
+        transform.Translate(Vector3.down * _speed * Time.deltaTime);
+        transform.rotation = Quaternion.Euler(0, 0, -60);
 
         if (transform.position.y < -6.0f && transform.position.x < -8.0f)
         {
@@ -94,6 +92,7 @@ public class EnemyDiagonal : MonoBehaviour
             _canFire = Time.time + _fireRate;
             GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
             AngledLaser[] laser = enemyLaser.GetComponentsInChildren<AngledLaser>();
+            
 
             for(int i = 0; i < laser.Length; i++)
             {
@@ -161,6 +160,6 @@ public class EnemyDiagonal : MonoBehaviour
         _speed = 0;
         _audioSource.Play();
         Destroy(gameObject.GetComponent<BoxCollider2D>());
-        Destroy(this.gameObject, 2.8f);
+        Destroy(this.gameObject, 1.5f);
     }
 }

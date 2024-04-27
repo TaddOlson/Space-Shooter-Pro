@@ -12,14 +12,14 @@ public class AngledLaser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_laserDirection == 0)
-        {
+       if (_laserDirection == 0)
+       {
             RightDiagonalLaser();
-        }
-        else if (_laserDirection == 1)
-        {
+       }
+       else if (_laserDirection == 1)
+       {
             LeftDiagonalLaser();
-        }
+       }
     }
 
     public void LaserDirection (int direction)
@@ -29,7 +29,8 @@ public class AngledLaser : MonoBehaviour
 
     public void RightDiagonalLaser()
     {
-        transform.Translate(new Vector3(-15.0f, -10.0f, 0).normalized * _speed * Time.deltaTime);
+        transform.Translate(Vector3.down * _speed * Time.deltaTime);
+        transform.rotation = Quaternion.Euler(0, 0, 60);
 
         if (transform.position.y < -8f)
         {
@@ -45,7 +46,8 @@ public class AngledLaser : MonoBehaviour
 
     public void LeftDiagonalLaser()
     {
-        transform.Translate(new Vector3(15.0f, -10.0f, 0).normalized * _speed * Time.deltaTime);
+        transform.Translate(Vector3.down * _speed * Time.deltaTime);
+        transform.rotation = Quaternion.Euler(0, 0, -60);
 
         if (transform.position.y < -8f)
         {
