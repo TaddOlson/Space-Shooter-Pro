@@ -12,14 +12,14 @@ public class AngledLaser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if (_laserDirection == 0)
-       {
+      if (_laserDirection == 0)
+      {
             RightDiagonalLaser();
-       }
-       else if (_laserDirection == 1)
-       {
+      }
+      else if (_laserDirection == 1)
+      {
             LeftDiagonalLaser();
-       }
+      }
     }
 
     public void LaserDirection (int direction)

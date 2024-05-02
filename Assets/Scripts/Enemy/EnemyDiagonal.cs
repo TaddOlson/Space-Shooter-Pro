@@ -44,6 +44,7 @@ public class EnemyDiagonal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (_enemyDirection == 0)
         {
             EnemyDiagonalMovementRight();
@@ -86,18 +87,18 @@ public class EnemyDiagonal : MonoBehaviour
 
     public void EnemyFire()
     {
+        
         if(Time.time > _canFire)
         {
             _fireRate = Random.Range(2f, 5f);
             _canFire = Time.time + _fireRate;
             GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
             AngledLaser[] laser = enemyLaser.GetComponentsInChildren<AngledLaser>();
-            
 
-            for(int i = 0; i < laser.Length; i++)
+            for (int i = 0; i < laser.Length; i++)
             {
                 laser[i].AssignEnemyLaser();
-            }
+            }  
         }
     }
 
@@ -160,6 +161,6 @@ public class EnemyDiagonal : MonoBehaviour
         _speed = 0;
         _audioSource.Play();
         Destroy(gameObject.GetComponent<BoxCollider2D>());
-        Destroy(this.gameObject, 1.5f);
+        Destroy(this.gameObject, 1.0f);
     }
 }
