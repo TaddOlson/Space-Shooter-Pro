@@ -44,7 +44,6 @@ public class EnemyDiagonal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (_enemyDirection == 0)
         {
             EnemyDiagonalMovementRight();
@@ -82,7 +81,6 @@ public class EnemyDiagonal : MonoBehaviour
         {
             transform.position = new Vector3(11.0f, 7.7f, 0);
         }
-
     }
 
     public void EnemyFire()
@@ -92,13 +90,14 @@ public class EnemyDiagonal : MonoBehaviour
         {
             _fireRate = Random.Range(2f, 5f);
             _canFire = Time.time + _fireRate;
-            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+            GameObject enemyLaser = Instantiate(_laserPrefab, new Vector3(.7f, -1f, 0) + transform.position, Quaternion.identity);
             AngledLaser[] laser = enemyLaser.GetComponentsInChildren<AngledLaser>();
 
             for (int i = 0; i < laser.Length; i++)
             {
                 laser[i].AssignEnemyLaser();
-            }  
+                laser[i].LaserDirection(_enemyDirection);
+            }
         }
     }
 
