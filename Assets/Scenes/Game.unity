@@ -2558,6 +2558,12 @@ MonoBehaviour:
   _enemyAngleSpawn:
   - {fileID: 461066444}
   - {fileID: 1852340794}
+  _enemySpawnedCount: 0
+  _enemyPerSpawn: 5
+  _currentWave: 1
+  _initialEnemySpawnCount: 5
+  _enemiesPerWaveIncrease: 5
+  _totalEnemyWaveCount: 7
 --- !u!4 &1877394603
 Transform:
   m_ObjectHideFlags: 0

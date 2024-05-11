@@ -29,6 +29,19 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject[] _enemyAngleSpawn;
 
+    [SerializeField]
+    private int _enemySpawnedCount = 0; // current number of enemies spawned in wave
+    [SerializeField]
+    private int _enemyPerSpawn = 5; // number of enemies to spawn per wave
+    [SerializeField]
+    private int _currentWave = 1; // current wave number
+    [SerializeField]
+    private int _initialEnemySpawnCount = 5;
+    [SerializeField]
+    private int _enemiesPerWaveIncrease = 5;
+    [SerializeField]
+    private int _totalEnemyWaveCount = 7;
+
     public void StartSpawning()
     {
         foreach (var item in _table)
@@ -36,8 +49,9 @@ public class SpawnManager : MonoBehaviour
             _total += item;
         }
 
-        StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerupRoutine());
+        StartCoroutine(SpawnEnemyRoutine());
+        StartCoroutine(SpawnEnemyWaveRoutine());
     }
 
     IEnumerator SpawnEnemyRoutine()
@@ -70,7 +84,32 @@ public class SpawnManager : MonoBehaviour
             EnemyDiagonal enemyDiagonal = enemy.GetComponent<EnemyDiagonal>();
             enemyDiagonal.EnemyDirection(randomAngleSpawn);
             enemyDiagonal.transform.rotation = _enemyAngleSpawn[randomAngleSpawn].transform.rotation;
-        } 
+        }
+
+        _enemySpawnedCount++;
+
+        if (_enemySpawnedCount >= 5)
+        {
+            _stopSpawning = true;
+        }
+
+    }
+
+    IEnumerator SpawnEnemyWaveRoutine()
+    {
+        while (_currentWave <= _totalEnemyWaveCount)
+        {
+            yield return new WaitForSeconds(20.5f);
+
+            _stopSpawning = false;
+            _enemySpawnedCount = 0;
+
+            _initialEnemySpawnCount += _enemiesPerWaveIncrease;
+
+            StartCoroutine(SpawnEnemyRoutine());
+
+            _currentWave++;
+        }
     }
 
     IEnumerator SpawnPowerupRoutine()
