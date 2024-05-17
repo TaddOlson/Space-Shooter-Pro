@@ -28,9 +28,14 @@ public class UIManager : MonoBehaviour
     private Image _fuelSliderFill;
     [SerializeField]
     private Text _overheatedText;
+    [SerializeField]
+    private Text _waveStartText;
+    [SerializeField]
+    private Text _finalWaveText;
 
     private GameManager _gameManager;
     private Player _player;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +47,8 @@ public class UIManager : MonoBehaviour
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
         _player = GameObject.Find("Player").GetComponent<Player>();
         _overheatedText.gameObject.SetActive(false);
+        _waveStartText.gameObject.SetActive(false);
+        _finalWaveText.gameObject.SetActive(false);
 
         if (_player == null)
         {
@@ -136,6 +143,38 @@ public class UIManager : MonoBehaviour
         else if(fuelValue > 30.0f)
         {
             _overheatedText.gameObject.SetActive(false);
+        }
+    }
+
+    public void UpdateWave(int waveCount)
+    {
+        if(waveCount <= 6)
+        {
+            StartCoroutine(WaveStartTextRoutine());
+        }
+        else if(waveCount == 7)
+        {
+            StartCoroutine(FinalWaveRoutine());
+        }
+    }
+
+    IEnumerator WaveStartTextRoutine()
+    {
+        while(true)
+        {
+            _waveStartText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1.0f);
+            _waveStartText.gameObject.SetActive(false);
+        }
+    }
+
+    IEnumerator FinalWaveRoutine()
+    {
+        while(true)
+        {
+            _finalWaveText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1.0f);
+            _finalWaveText.gameObject.SetActive(false);
         }
     }
 }

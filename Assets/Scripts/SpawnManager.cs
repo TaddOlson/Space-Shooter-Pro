@@ -42,6 +42,12 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private int _totalEnemyWaveCount = 7;
 
+    private UIManager _uiManager;
+
+    public void Start()
+    {
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+    }
     public void StartSpawning()
     {
         foreach (var item in _table)
@@ -99,6 +105,8 @@ public class SpawnManager : MonoBehaviour
     {
         while (_currentWave <= _totalEnemyWaveCount)
         {
+            _uiManager.UpdateWave(_currentWave);
+
             yield return new WaitForSeconds(20.5f);
 
             _stopSpawning = false;
