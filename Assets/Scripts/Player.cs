@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     private bool _isTripleShotActive = false;
     private bool _isShieldsActive = false;
     private bool _isLunarShotActive = false;
+    private bool _isChilledPowerupActive = false;
     [SerializeField]
     private int _shieldDurability = 3;
     private SpriteRenderer _shieldColor;
@@ -446,6 +447,22 @@ public class Player : MonoBehaviour
 
         _lives++;
         _uiManager.UpdateLives(_lives);
+    }
+
+    public void PlayerSlowdown()
+    {
+        _isChilledPowerupActive = true;
+        StartCoroutine(ChilledPowerupRoutine());
+    }
+
+    IEnumerator ChilledPowerupRoutine()
+    {
+        while(_isChilledPowerupActive == true)
+        {
+            _speed = 2.5f;
+            _fireRate = 0.45f;
+            yield return new WaitForSeconds(5.0f);
+        }
     }
 
 }  

@@ -165,6 +165,7 @@ public class UIManager : MonoBehaviour
             _waveStartText.gameObject.SetActive(true);
             yield return new WaitForSeconds(1.0f);
             _waveStartText.gameObject.SetActive(false);
+            yield return new WaitForSeconds(20.5f);
         }
     }
 

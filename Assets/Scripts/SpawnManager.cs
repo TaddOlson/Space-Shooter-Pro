@@ -115,6 +115,7 @@ public class SpawnManager : MonoBehaviour
             _initialEnemySpawnCount += _enemiesPerWaveIncrease;
 
             StartCoroutine(SpawnEnemyRoutine());
+            StartCoroutine(SpawnPowerupRoutine());
 
             _currentWave++;
         }
