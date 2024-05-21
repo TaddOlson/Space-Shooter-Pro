@@ -13,12 +13,13 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private int[] _table =
     {
-        199, //Triple Shot
-        199, //Speed
-        199, //Shields
-        198, //Reload
-        130, //Health
-        75 //Lunar
+        142, //Triple Shot
+        142, //Speed
+        142, //Shields
+        142, //Reload
+        142, //Health
+        142, //Lunar
+        142, //Player Chill
     };
 
     private bool _stopSpawning = false;
@@ -77,7 +78,6 @@ public class SpawnManager : MonoBehaviour
         int randomAngleSpawn = Random.Range(0, 2);
         int randomEnemy = Random.Range(0, 2);
         
-
         if (randomEnemy == 0)
         {
             GameObject firstEnemy = Instantiate(_enemyPrefab[0], normalToSpawn, Quaternion.identity);
