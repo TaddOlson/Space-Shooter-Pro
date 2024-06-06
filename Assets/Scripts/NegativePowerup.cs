@@ -20,10 +20,9 @@ public class NegativePowerup : MonoBehaviour
         {
             transform.position += transform.forward * _speed * Time.deltaTime;
         }
-
-        if (Vector3.Distance(transform.position, player.position) <= _maxDist)
+        else if (Vector3.Distance(transform.position, player.position) <= _maxDist)
         {
-            transform.position += transform.forward * _speed * Time.deltaTime;
+            
         }
 
     }

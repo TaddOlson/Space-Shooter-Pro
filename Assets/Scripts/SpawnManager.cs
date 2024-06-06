@@ -13,13 +13,13 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private int[] _table =
     {
-        142, //Triple Shot
-        142, //Speed
-        142, //Shields
-        142, //Reload
-        142, //Health
-        142, //Lunar
-        142, //Player Chill
+        155, //Triple Shot
+        155, //Speed
+        155, //Shields
+        155, //Reload
+        155, //Health
+        125, //Lunar
+        100, //Player Chill
     };
 
     private bool _stopSpawning = false;
