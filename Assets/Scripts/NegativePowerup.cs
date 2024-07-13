@@ -11,10 +11,20 @@ public class NegativePowerup : MonoBehaviour
     private float _maxDist = 10f;
     private float _minDist = 0;
     private AudioClip _clip;
+    private GameObject _player;
+    private GameObject _powerup;
 
     void Start()
     {
         _playerObject = GameObject.Find("Player").GetComponent<Player>();
+
+        _powerup = _player.transform.Find("Player").gameObject;
+
+        if (_powerup != null)
+        {
+            _playerTransform = _powerup.transform.Find("Powerup");
+        }
+        else Debug.Log("No powerup");
 
     }
 
